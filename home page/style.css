@@ -143,17 +143,3 @@
                 -webkit-backdrop-filter: blur(10px);
             }
         }
-
-        /* Mobile Hero Section Spacing Optimization (Mobile Only: < 768px) */
-        @media (max-width: 767px) {
-            #sec-0 {
-                justify-content: flex-start !important;
-                padding-top: 142px !important;
-            }
-        }
-        @media (min-width: 640px) and (max-width: 767px) {
-            #sec-0 {
-                padding-top: 168px !important;
-            }
-        }
-
