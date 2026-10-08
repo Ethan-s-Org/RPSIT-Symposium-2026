@@ -129,3 +129,17 @@
         .modal-active #events-popup-container {
             animation: modalZoomIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        /* Mobile Viewport Safeguards */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (max-width: 640px) {
+            .glass-panel, .glass-panel-amber, .glass-panel-emerald, .glass-panel-fuchsia, .glass-panel-darkblue {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+        }

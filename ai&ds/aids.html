@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 
 <body>
@@ -27,6 +27,7 @@
       <div>
         <strong>R P SARATHY</strong>
         <span>INSTITUTE OF TECHNOLOGY</span>
+        <small class="brand-sub">(AN AUTONOMOUS INSTITUTION)</small>
       </div>
     </a>
 
@@ -56,7 +57,7 @@
   <main id="top">
     <section class="hero section-grid">
       <div class="hero-content">
-        <a class="back-link" href="../home page/index.html">← RETURN TO MAIN PORTAL</a>
+        <a class="back-link" href="../home page/index.html">← RETURN TO HOME PAGE</a>
         <div class="eyebrow"><span></span> DEPARTMENT ARENA 02 // AI&DS</div>
 
         <h1>ARTIFICIAL INTELLIGENCE <em>&amp;</em><br><span>DATA SCIENCE</span></h1>
@@ -66,7 +67,8 @@
 
         <div class="stats">
           <div><b>05</b><small>CHAMPIONSHIP EVENTS</small></div>
-          <div><b>₹150</b><small>REGISTRATION FEE</small></div>
+          <div><b>₹100</b><small>ENTRY FEE</small></div>
+          <div><b>₹50</b><small>EVENT FEE (PER EVENT)</small></div>
         </div>
 
         <button class="cyber-btn" onclick="openRegisterModal('AI&DS Department')">
@@ -107,76 +109,165 @@
       <div class="section-heading">
         <span>// COMPETITION TRACKS</span>
         <h2>OFFICIAL <strong>EVENTS</strong></h2>
-        <p>Five high-intensity competition modules engineered by the Department of ARTIFICIAL INTELLIGENCE & DATA
+        <p>Five high-intensity competition modules engineered by the Department of ARTIFICIAL INTELLIGENCE &amp; DATA
           SCIENCE.</p>
       </div>
 
       <div class="events-grid">
+        <!-- EVENT 01: PAPER PRESENTATION -->
         <article class="event-card">
           <div class="event-top"><b>01</b><span>RESEARCH // PRESENTATION</span></div>
-          <h3>PRO-PITCH-PROMPT TO APP</h3>
-          <p>Present research breakthroughs in Cloud Computing, Quantum Computing, Distributed Systems, Web3 or Neural
-            Interfaces.</p>
-          <div class="meta"><span>◷ 1–3 MEMBERS</span><span>▣ 10 OCT 2026</span></div>
-          <div class="actions">
-            <button class="outline-btn"
-              onclick="openRulesModal('Paper Presentation','10:45 AM - 01:00 PM','CSE Seminar Hall 1',['Max presentation time: 8 mins + 2 mins Q&A','Submit PPT & abstract by Oct 10, 2026','Bring presentation on USB drive as fallback','Original work only; plagiarism strictly penalized'])">VIEW
-              RULES</button>
-            <button class="cyber-btn small" onclick="openRegisterModal('Paper Presentation')">REGISTER</button>
-          </div>
-        </article>
-
-        <article class="event-card">
-          <div class="event-top"><b>02</b><span>PRODUCT // INTERFACE</span></div>
-          <h3>BUG BUSTER-CODE DEBUGGING<i>(VIBE CODING)</i></h3>
-          <p>Turn a real-time prompt into an immersive interface using Figma, Penpot or pure front-end code.</p>
-          <div class="meta"><span>◷ 90 MINUTES</span><span>◇ FIGMA / HTML-CSS</span></div>
-          <div class="actions">
-            <button class="outline-btn"
-              onclick="openRulesModal('UI UX Design (Vibe Coding)','11:00 AM - 12:30 PM','Computer Lab 3',['Theme disclosed at start of round','Evaluation on hierarchy, accessibility and animations','Figma, Penpot or front-end code permitted','Individual or Duo participation'])">VIEW
-              RULES</button>
-            <button class="cyber-btn small" onclick="openRegisterModal('UI UX Design (Vibe Coding)')">REGISTER</button>
-          </div>
-        </article>
-
-        <article class="event-card">
-          <div class="event-top"><b>03</b><span>APP // DEVELOPMENT</span></div>
           <h3>PAPER PRESENTATION</h3>
-          <p>Demonstrate deployed mobile solutions across Flutter, React Native, Kotlin or Swift with live code review.
+          <p>Participants present a research-based or innovative technical topic before judges using PowerPoint.</p>
+          <div class="meta">
+            <span>👥 INDIVIDUAL / TEAM</span>
+            <span>⌖ LH-05</span>
+            <span>◷ 10:30 AM – 12:30 PM</span>
+          </div>
+          <div class="actions">
+            <button class="outline-btn" onclick="openRulesModal(
+                'Paper Presentation',
+                '10:30 AM – 12:30 PM',
+                'LH-05',
+                [
+                  'Type: Individual / Team participation.',
+                  'The event has 2 rounds. Paper/PPT must be submitted before the event, and the presentation must use PowerPoint.',
+                  'Participants must complete the presentation within the given time, followed by a short Q&amp;A. Round 1 selections proceed to Round 2.',
+                  'Duration: Round 1 – 5 min | Round 2 – 5 min | Total – 15 min/team.'
+                ],
+                '<strong>Judging Criteria:</strong> Technical content, originality, presentation skill, clarity and Q&amp;A.<br><strong>Duration:</strong> Round 1 – 5 min | Round 2 – 5 min | Total – 15 min/team',
+                '<strong>Staff Coordinator/Jury:</strong><br>Mrs. N.Pushpa ASP/AI&amp;DS<br><br><strong>Student Coordinators:</strong><br>1) Kishorerajpriyan M<br>2) Prathiksha J',
+                'Individual / Team',
+                '<strong>Chief Guest &amp; Jury:</strong><br>MOHAN, Futogen Private Limited, Founder and CEO',
+                '1st Prize: ₹1,000 | 2nd Prize: ₹750 | 3rd Prize: ₹500<br>Participation certificate for all participants.'
+              )">VIEW RULES</button>
+          </div>
+        </article>
+
+        <!-- EVENT 02: PRO-PITCH -->
+        <article class="event-card">
+          <div class="event-top"><b>02</b><span>PROMPT // APP INNOVATION</span></div>
+          <h3>PRO-PITCH <i>(PROMPT TO APP)</i></h3>
+          <p>Participants use AI prompts to develop a functional app based on an app/idea selected through a Lucky Draw.
           </p>
-          <div class="meta"><span>◷ LIVE DEMO</span><span>▣ ANDROID / IOS</span></div>
+          <div class="meta">
+            <span>👥 INDIVIDUAL / TEAM</span>
+            <span>⌖ DELTA LAB</span>
+            <span>◷ 10:30 AM – 1:00 PM</span>
+          </div>
           <div class="actions">
-            <button class="outline-btn"
-              onclick="openRulesModal('Mobile Application Development','11:00 AM - 01:00 PM','Advanced Software Lab',['Bring personal testing device or emulator','Present live APK / TestFlight / Expo build','Code walkthrough by judges','Team of 1 to 2 members'])">VIEW
-              RULES</button>
-            <button class="cyber-btn small"
-              onclick="openRegisterModal('Mobile Application Development')">REGISTER</button>
+            <button class="outline-btn" onclick="openRulesModal(
+                'Pro-pitch (Prompt to App)',
+                '10:30 AM – 1:00 PM',
+                'DELTA LAB',
+                [
+                  'Type: Individual / Team participation.',
+                  'The event has 2 rounds. The app/idea is selected through Lucky Draw.',
+                  'AI tools such as ChatGPT, Gemini, Claude and Copilot are allowed for coding, design, features and development.',
+                  'Participants must not submit screenshots as the final output. The exact name of the selected/reference app must not be copied or revealed.',
+                  'Participants must create the app with a new and unique name. The final working app will be evaluated directly.',
+                  'Round 1 qualifiers proceed to Round 2.'
+                ],
+                '<strong>Judging Criteria:</strong> Based on functionality, creativity, AI prompt usage, UI/design and final app quality.<br><strong>Duration:</strong> Round 1: 10:30–11:30 AM (40 min) | Round 2: 12:00–1:00 PM (40 min) | Total: 1 hr 20 min',
+                '<strong>Staff Coordinator/Jury:</strong><br>Mrs. D.Vidya AP/AI&amp;DS<br><br><strong>Student Coordinators:</strong><br>1) Kabil V<br>2) Vaishnavi R',
+                'Individual / Team',
+                '<strong>Chief Guest &amp; Jury:</strong><br>SANJAI PRABHAKARAN, Project Trainee to Technical Trainee, Zoho, Salem',
+                '1st Prize: ₹1,000 | 2nd Prize: ₹750 | 3rd Prize: ₹500<br>Participation certificate for all participants.'
+              )">VIEW RULES</button>
           </div>
         </article>
 
+        <!-- EVENT 03: VIZ CRAFT -->
         <article class="event-card">
-          <div class="event-top"><b>04</b><span>COMPETITIVE // PROGRAMMING</span></div>
-          <h3>INNOVATION SHOWCASE-PROJECT EXPO</h3>
-          <p>Race against time to debug, write and execute error-free code across escalating test scenarios.</p>
-          <div class="meta"><span>◷ 2 ROUNDS</span><span>&lt;/&gt; C / C++ / JAVA / PYTHON</span></div>
+          <div class="event-top"><b>03</b><span>DATA // VISUALIZATION</span></div>
+          <h3>VIZ CRAFT <i>(AI DATA VISUALIZATION)</i></h3>
+          <p>Participants analyze a given dataset and use AI-assisted tools to create meaningful visualizations and
+            communicate useful insights.</p>
+          <div class="meta">
+            <span>👥 MAX 2 PARTICIPANTS</span>
+            <span>⌖ THETA LAB</span>
+            <span>◷ 10:30 AM – 1:00 PM</span>
+          </div>
           <div class="actions">
-            <button class="outline-btn"
-              onclick="openRulesModal('Speed Coding','11:15 AM - 12:45 PM','Programming Lab 1',['Individual participation only','No internet lookup during round','Scored on speed, correctness and memory complexity','Tie-breaker based on first full submission timestamp'])">VIEW
-              RULES</button>
-            <button class="cyber-btn small" onclick="openRegisterModal('Speed Coding')">REGISTER</button>
+            <button class="outline-btn" onclick="openRulesModal(
+                'VizCraft (AI Data Visualization)',
+                '10:30 AM – 1:00 PM',
+                'THETA LAB',
+                [
+                  'Type: Individual / Maximum 2 Participants.',
+                  'The event has 2 rounds, with a dataset provided in each round.',
+                  'Participants may use AI tools for data analysis, visualization suggestions and assistance.',
+                  'Excel, Power BI, Python or other approved tools may be used.',
+                  'Participants must create suitable visualizations based on the given dataset and explain the insights obtained. Round 1 qualifiers proceed to Round 2.'
+                ],
+                '<strong>Judging Criteria:</strong> Based on data accuracy, visualization quality, insight interpretation, creativity and presentation.<br><strong>Duration:</strong> Round 1: 10:30–11:30 AM (30 min) | Round 2: 12:00–1:00 PM (30 min) | Total: 1 hour',
+                '<strong>Staff Coordinator/Jury:</strong><br>Mrs. R.Devi priya ASP/AI&amp;DS<br><br><strong>Student Coordinators:</strong><br>1) Priyanka M<br>2) Sakthi P',
+                'Individual / Max 2 Participants',
+                '<strong>Chief Guest &amp; Jury:</strong><br>PRIYA S, Junior Data Analyst, Imagecon Academy, Salem',
+                '1st Prize: ₹1,000 | 2nd Prize: ₹750 | 3rd Prize: ₹500<br>Participation certificate for all participants.'
+              )">VIEW RULES</button>
           </div>
         </article>
 
+        <!-- EVENT 04: CODE FLEX -->
         <article class="event-card">
-          <div class="event-top"><b>05</b><span>PROBLEM // SOLVING</span></div>
-          <h3>MIND MATRIX-QUIZ</h3>
-          <p>Tackle Dynamic Programming, Graph Theory, Greedy approaches and Tree traversal brainteasers.</p>
-          <div class="meta"><span>◷ DSA + LOGIC</span><span>◎ MODERATE → ADVANCED</span></div>
+          <div class="event-top"><b>04</b><span>MULTI-LANG // CODING</span></div>
+          <h3>CODE FLEX <i>(MULTI-LANGUAGE CODING)</i></h3>
+          <p>Participants solve programming problems using a programming language of their choice and produce the
+            correct output.</p>
+          <div class="meta">
+            <span>👤 INDIVIDUAL</span>
+            <span>⌖ DELTA LAB</span>
+            <span>◷ 10:30 AM – 1:00 PM</span>
+          </div>
           <div class="actions">
-            <button class="outline-btn"
-              onclick="openRulesModal('Algorithm Challenge','02:00 PM - 03:30 PM','Computer Center 2',['Pen & paper blueprint followed by implementation','Team of 1 or 2 members','Judged on algorithmic optimality and Big-O','Top 5 teams qualify for rapid-fire finals'])">VIEW
-              RULES</button>
-            <button class="cyber-btn small" onclick="openRegisterModal('Algorithm Challenge')">REGISTER</button>
+            <button class="outline-btn" onclick="openRulesModal(
+                'Code Flex (Multi-language Coding Challenge)',
+                '10:30 AM – 1:00 PM',
+                'DELTA LAB',
+                [
+                  'Type: Individual participation.',
+                  'The event has 2 rounds. Languages such as Python, Java, C and C++ are allowed.',
+                  'Participants can choose any permitted programming language to solve the given problems.',
+                  'Internet, AI tools and external assistance are not allowed. Source code must be submitted within the given time. Round 1 qualifiers proceed to Round 2.'
+                ],
+                '<strong>Judging Criteria:</strong> Based on correctness, logic, efficiency and completion time.<br><strong>Duration:</strong> Round 1: 10:30–11:30 AM (30 min) | Round 2: 12:00–1:00 PM (30 min) | Total: 1 hour',
+                '<strong>Staff Coordinator/Jury:</strong><br>Mrs. Lavanya AP/AI&amp;DS<br><br><strong>Student Coordinators:</strong><br>1) Krishnakumar S<br>2) Roshini V',
+                'Individual',
+                '<strong>Chief Guest &amp; Jury:</strong><br>PARIVARTHINI, Futogen Private Limited, Java Full Stack Developer',
+                '1st Prize: ₹1,000 | 2nd Prize: ₹750 | 3rd Prize: ₹500<br>Participation certificate for all participants.'
+              )">VIEW RULES</button>
+          </div>
+        </article>
+
+        <!-- EVENT 05: COGNIX -->
+        <article class="event-card">
+          <div class="event-top"><b>05</b><span>INTELLIGENCE // QUIZ</span></div>
+          <h3>COGNIX <i>(QUIZ)</i></h3>
+          <p>Participants compete in a technical quiz covering Artificial Intelligence, Data Science, Machine Learning
+            and current developments in AI.</p>
+          <div class="meta">
+            <span>👤 INDIVIDUAL</span>
+            <span>⌖ THETA LAB</span>
+            <span>◷ 10:30 AM – 1:00 PM</span>
+          </div>
+          <div class="actions">
+            <button class="outline-btn" onclick="openRulesModal(
+                'Cognix (Quiz)',
+                '10:30 AM – 1:00 PM',
+                'THETA LAB',
+                [
+                  'Type: Individual participation.',
+                  'The event has 2 rounds. Each round consists of 20 questions covering AI, Data Science, Machine Learning, Deep Learning, Generative AI, recent AI technologies and AI-related current affairs.',
+                  'Round 1 is the preliminary round, and shortlisted participants proceed to Round 2.',
+                  'Internet, AI tools and external assistance are not allowed.'
+                ],
+                '<strong>Judging Criteria:</strong> Based on accuracy and completion time.<br><strong>Duration:</strong> Round 1: 10:30–11:30 AM (30 min) | Round 2: 12:00–1:00 PM (30 min) | Total: 1 hour',
+                '<strong>Staff Coordinator/Jury:</strong><br>Mr. Sivasubramani AP/AI&amp;DS<br><br><strong>Student Coordinators:</strong><br>1) Satheeshwaran S<br>2) Sariga M',
+                'Individual',
+                '<strong>Chief Guest &amp; Jury:</strong><br>Mohan M, CEO, Patora AI &amp; IT Services',
+                '1st Prize: ₹1,000 | 2nd Prize: ₹750 | 3rd Prize: ₹500<br>Participation certificate for all participants.'
+              )">VIEW RULES</button>
           </div>
         </article>
       </div>
@@ -194,15 +285,15 @@
           <span>STAFF CO-ORDINATOR</span>
           <h3>Mrs. S. PRIYANKA</h3>
           <p>Assistant Professor / Dept of AI&DS</p>
-          <div><a href="tel:9025593180">☎ 90255 93180</a><a href="https://wa.me/919025593180" target="_blank">◉
-              WHATSAPP</a></div>
+          <div><a href="tel:9025593180" class="coord-btn phone-btn">☎ 90255 93180</a><a
+              href="https://wa.me/919025593180" target="_blank" class="coord-btn wa-btn">◉ WHATSAPP</a></div>
         </div>
         <div class="coord-card glass">
           <span>STUDENT CO-ORDINATOR</span>
           <h3>Mr. BALAJIMANIKANDHAAN S S</h3>
           <p>Final Year (III / AI&DS)</p>
-          <div><a href="tel:7358213736">☎ 73582 13736</a><a href="https://wa.me/917358213736" target="_blank">◉
-              WHATSAPP</a></div>
+          <div><a href="tel:7358213736" class="coord-btn phone-btn">☎ 73582 13736</a><a
+              href="https://wa.me/917358213736" target="_blank" class="coord-btn wa-btn">◉ WHATSAPP</a></div>
         </div>
       </div>
     </section>
@@ -214,18 +305,50 @@
       <span class="modal-tag">// OFFICIAL REGISTRATION</span>
       <h2>ACCESS <strong>GRANTED</strong></h2>
       <p id="registerText">Registration for AI&DS events.</p>
-      <div class="modal-info">REGISTRATION FEE: <strong>₹150/- ONLY</strong></div>
-      <a class="cyber-btn full" href="https://rpsitsymposium.netlify.app" target="_blank">OPEN REGISTRATION FORM →</a>
+      <div class="modal-info">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <span>ENTRY FEE — <strong>₹100/-</strong></span>
+          <span>EVENT FEE — <strong>₹50/- PER EVENT</strong></span>
+        </div>
+      </div>
+      <button class="cyber-btn full" onclick="closeModals()">ACKNOWLEDGE PROTOCOL</button>
     </div>
   </div>
 
   <div class="modal-overlay" id="rulesModal">
     <div class="modal glass">
       <button class="close" onclick="closeModals()">×</button>
-      <span class="modal-tag">// EVENT PROTOCOL</span>
+      <span class="modal-tag">// OFFICIAL RULES &amp; GUIDELINES</span>
       <h2 id="rulesTitle">EVENT DETAILS</h2>
-      <div class="rule-meta"><span id="rulesTime"></span><span id="rulesVenue"></span></div>
+      <div class="rule-meta">
+        <span id="rulesTime"></span>
+        <span id="rulesVenue"></span>
+        <span id="rulesTeam" style="display:none;"></span>
+      </div>
+
+      <div class="modal-rules-heading">// GUIDELINES</div>
       <ul id="rulesBody"></ul>
+
+      <div class="modal-criteria-box" id="modalCriteriaBox" style="display:none;">
+        <span class="criteria-tag">// EVALUATION &amp; DURATION</span>
+        <p id="rulesCriteriaText"></p>
+      </div>
+
+      <div class="modal-guest-box" id="modalGuestBox" style="display:none;">
+        <span class="guest-tag">// CHIEF GUEST &amp; JURY</span>
+        <p id="rulesGuestText"></p>
+      </div>
+
+      <div class="modal-prize-box" id="modalPrizeBox" style="display:none;">
+        <span class="prize-tag">// CASH PRIZE POOL</span>
+        <p id="rulesPrizeText"></p>
+      </div>
+
+      <div class="modal-coord-box" id="modalCoordBox" style="display:none;">
+        <span class="coord-tag">// EVENT CO-ORDINATORS</span>
+        <p id="rulesCoordText"></p>
+      </div>
+
       <button class="cyber-btn full" onclick="closeModals()">ACKNOWLEDGE PROTOCOL</button>
     </div>
   </div>

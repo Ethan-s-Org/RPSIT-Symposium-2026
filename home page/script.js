@@ -1,113 +1,113 @@
 /* Interactive Web Audio Synthesizer (Space Drone & Warp Jump) */
-        let audioCtx = null;
-        let isAudioPlaying = false;
-        let masterGain = null;
-        let droneOsc1 = null, droneOsc2 = null, droneFilter = null;
+let audioCtx = null;
+let isAudioPlaying = false;
+let masterGain = null;
+let droneOsc1 = null, droneOsc2 = null, droneFilter = null;
 
-        function initAudio() {
-            if (audioCtx) return;
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            audioCtx = new AudioContext();
+function initAudio() {
+    if (audioCtx) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContext();
 
-            masterGain = audioCtx.createGain();
-            masterGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            masterGain.connect(audioCtx.destination);
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+    masterGain.connect(audioCtx.destination);
 
-            // Sub low rumble drone
-            droneOsc1 = audioCtx.createOscillator();
-            droneOsc1.type = 'sawtooth';
-            droneOsc1.frequency.setValueAtTime(55, audioCtx.currentTime); // Low A
+    // Sub low rumble drone
+    droneOsc1 = audioCtx.createOscillator();
+    droneOsc1.type = 'sawtooth';
+    droneOsc1.frequency.setValueAtTime(55, audioCtx.currentTime); // Low A
 
-            droneFilter = audioCtx.createBiquadFilter();
-            droneFilter.type = 'lowpass';
-            droneFilter.frequency.setValueAtTime(140, audioCtx.currentTime);
+    droneFilter = audioCtx.createBiquadFilter();
+    droneFilter.type = 'lowpass';
+    droneFilter.frequency.setValueAtTime(140, audioCtx.currentTime);
 
-            // Shimmering second wave
-            droneOsc2 = audioCtx.createOscillator();
-            droneOsc2.type = 'sine';
-            droneOsc2.frequency.setValueAtTime(110.2, audioCtx.currentTime);
+    // Shimmering second wave
+    droneOsc2 = audioCtx.createOscillator();
+    droneOsc2.type = 'sine';
+    droneOsc2.frequency.setValueAtTime(110.2, audioCtx.currentTime);
 
-            const droneGain = audioCtx.createGain();
-            droneGain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    const droneGain = audioCtx.createGain();
+    droneGain.gain.setValueAtTime(0.3, audioCtx.currentTime);
 
-            droneOsc1.connect(droneFilter);
-            droneFilter.connect(droneGain);
-            droneOsc2.connect(droneGain);
-            droneGain.connect(masterGain);
+    droneOsc1.connect(droneFilter);
+    droneFilter.connect(droneGain);
+    droneOsc2.connect(droneGain);
+    droneGain.connect(masterGain);
 
-            droneOsc1.start();
-            droneOsc2.start();
-        }
+    droneOsc1.start();
+    droneOsc2.start();
+}
 
-        function toggleAudio() {
-            if (!audioCtx) initAudio();
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+function toggleAudio() {
+    if (!audioCtx) initAudio();
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
 
-            isAudioPlaying = !isAudioPlaying;
-            if (isAudioPlaying) {
-                masterGain.gain.setTargetAtTime(0.25, audioCtx.currentTime, 0.5);
-                const audioLabel = document.getElementById('audio-label');
-                const audioToggle = document.getElementById('audio-toggle');
-                if (audioLabel) audioLabel.textContent = 'AUDIO: ON';
-                if (audioToggle) audioToggle.classList.add('border-cyan-400', 'text-cyan-300');
-            } else {
-                masterGain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.3);
-                const audioLabel = document.getElementById('audio-label');
-                const audioToggle = document.getElementById('audio-toggle');
-                if (audioLabel) audioLabel.textContent = 'AUDIO: OFF';
-                if (audioToggle) audioToggle.classList.remove('border-cyan-400', 'text-cyan-300');
-            }
-        }
+    isAudioPlaying = !isAudioPlaying;
+    if (isAudioPlaying) {
+        masterGain.gain.setTargetAtTime(0.25, audioCtx.currentTime, 0.5);
+        const audioLabel = document.getElementById('audio-label');
+        const audioToggle = document.getElementById('audio-toggle');
+        if (audioLabel) audioLabel.textContent = 'AUDIO: ON';
+        if (audioToggle) audioToggle.classList.add('border-cyan-400', 'text-cyan-300');
+    } else {
+        masterGain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.3);
+        const audioLabel = document.getElementById('audio-label');
+        const audioToggle = document.getElementById('audio-toggle');
+        if (audioLabel) audioLabel.textContent = 'AUDIO: OFF';
+        if (audioToggle) audioToggle.classList.remove('border-cyan-400', 'text-cyan-300');
+    }
+}
 
-        function triggerWarpSound() {
-            if (!audioCtx) initAudio();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
+function triggerWarpSound() {
+    if (!audioCtx) initAudio();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
 
-            const warpOsc = audioCtx.createOscillator();
-            const warpGain = audioCtx.createGain();
-            warpOsc.type = 'sawtooth';
+    const warpOsc = audioCtx.createOscillator();
+    const warpGain = audioCtx.createGain();
+    warpOsc.type = 'sawtooth';
 
-            warpOsc.frequency.setValueAtTime(80, audioCtx.currentTime);
-            warpOsc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 1.6);
-            warpOsc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 3.0);
+    warpOsc.frequency.setValueAtTime(80, audioCtx.currentTime);
+    warpOsc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 1.6);
+    warpOsc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 3.0);
 
-            warpGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
-            warpGain.gain.linearRampToValueAtTime(0.4, audioCtx.currentTime + 0.8);
-            warpGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.0);
+    warpGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+    warpGain.gain.linearRampToValueAtTime(0.4, audioCtx.currentTime + 0.8);
+    warpGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.0);
 
-            warpOsc.connect(warpGain);
-            warpGain.connect(audioCtx.destination);
-            warpOsc.start();
-            warpOsc.stop(audioCtx.currentTime + 3.1);
-        }
+    warpOsc.connect(warpGain);
+    warpGain.connect(audioCtx.destination);
+    warpOsc.start();
+    warpOsc.stop(audioCtx.currentTime + 3.1);
+}
 
-        const audioToggleBtn = document.getElementById('audio-toggle');
-        if (audioToggleBtn) {
-            audioToggleBtn.addEventListener('click', toggleAudio);
-        }
+const audioToggleBtn = document.getElementById('audio-toggle');
+if (audioToggleBtn) {
+    audioToggleBtn.addEventListener('click', toggleAudio);
+}
 
 /* ==========================================================================
    MATHEMATICAL FRACTAL NOISE ENGINE & PHOTOREALISTIC CELESTIAL RENDERING
    True pixel-level fBm synthesis for photorealistic Sun, Earth, and Saturn.
    ========================================================================== */
 
-const Noise = (function() {
+const Noise = (function () {
     const p = new Uint8Array(512);
     const permutation = [
-        151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,
-        8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,
-        35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,
-        134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,
-        55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,
-        18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,
-        250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,
-        189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,
-        172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,
-        228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,
-        107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,
-        138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180
+        151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142,
+        8, 99, 37, 240, 21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117,
+        35, 11, 32, 57, 177, 33, 88, 237, 149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71,
+        134, 139, 48, 27, 166, 77, 146, 158, 231, 83, 111, 229, 122, 60, 211, 133, 230, 220, 105, 92, 41,
+        55, 46, 245, 40, 244, 102, 143, 54, 65, 25, 63, 161, 1, 216, 80, 73, 209, 76, 132, 187, 208, 89,
+        18, 169, 200, 196, 135, 130, 116, 188, 159, 86, 164, 100, 109, 198, 173, 186, 3, 64, 52, 217, 226,
+        250, 124, 123, 5, 202, 38, 147, 118, 126, 255, 82, 85, 212, 207, 206, 59, 227, 47, 16, 58, 17, 182,
+        189, 28, 42, 223, 183, 170, 213, 119, 248, 152, 2, 44, 154, 163, 70, 221, 153, 101, 155, 167, 43,
+        172, 9, 129, 22, 39, 253, 19, 98, 108, 110, 79, 113, 224, 232, 178, 185, 112, 104, 218, 246, 97,
+        228, 251, 34, 242, 193, 238, 210, 144, 12, 191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239,
+        107, 49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254,
+        138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180
     ];
     for (let i = 0; i < 256; i++) {
         p[i] = permutation[i];
@@ -122,7 +122,7 @@ const Noise = (function() {
         return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
     }
     return {
-        noise2D: function(x, y) {
+        noise2D: function (x, y) {
             const X = Math.floor(x) & 255;
             const Y = Math.floor(y) & 255;
             const xf = x - Math.floor(x);
@@ -136,7 +136,7 @@ const Noise = (function() {
                 lerp(u, grad(p[AB], xf, yf - 1), grad(p[BB], xf - 1, yf - 1))
             );
         },
-        fbm: function(x, y, octaves = 5, lacunarity = 2.0, gain = 0.5) {
+        fbm: function (x, y, octaves = 5, lacunarity = 2.0, gain = 0.5) {
             let total = 0, frequency = 1, amplitude = 1, maxValue = 0;
             for (let i = 0; i < octaves; i++) {
                 total += this.noise2D(x * frequency, y * frequency) * amplitude;
@@ -155,7 +155,7 @@ function optimizeTexture(texture) {
         if (typeof renderer !== 'undefined' && renderer && renderer.capabilities) {
             texture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 16);
         }
-    } catch (e) {}
+    } catch (e) { }
     texture.generateMipmaps = true;
     texture.minFilter = THREE.LinearMipmapLinearFilter;
     texture.magFilter = THREE.LinearFilter;
@@ -1130,12 +1130,12 @@ function updateMeteors(delta, time) {
             const hL = m.head.clone().addScaledVector(side, -headHalfW);
             const hR = m.head.clone().addScaledVector(side, headHalfW);
 
-            posArr[pOffset] = tL.x;     posArr[pOffset + 1] = tL.y; posArr[pOffset + 2] = tL.z;
+            posArr[pOffset] = tL.x; posArr[pOffset + 1] = tL.y; posArr[pOffset + 2] = tL.z;
             posArr[pOffset + 3] = tR.x; posArr[pOffset + 4] = tR.y; posArr[pOffset + 5] = tR.z;
             posArr[pOffset + 6] = hL.x; posArr[pOffset + 7] = hL.y; posArr[pOffset + 8] = hL.z;
             posArr[pOffset + 9] = hR.x; posArr[pOffset + 10] = hR.y; posArr[pOffset + 11] = hR.z;
 
-            uvArr[uOffset] = 0.0;     uvArr[uOffset + 1] = 0.0;
+            uvArr[uOffset] = 0.0; uvArr[uOffset + 1] = 0.0;
             uvArr[uOffset + 2] = 0.0; uvArr[uOffset + 3] = 1.0;
             uvArr[uOffset + 4] = 1.0; uvArr[uOffset + 5] = 0.0;
             uvArr[uOffset + 6] = 1.0; uvArr[uOffset + 7] = 1.0;
@@ -1820,319 +1820,362 @@ scene.add(warpCoreGroup);
 
 gsap.registerPlugin(ScrollTrigger);
 
-        // Flight coordinates along the journey
-        const cameraWaypoints = [
-            { x: 0,    y: 10,  z: 80,    targetX: 0,    targetY: 0,   targetZ: -100 },  // 0: Launch
-            { x: -180, y: 35,  z: -320,  targetX: -350, targetY: 40,  targetZ: -450 },  // 1: Sun
-            { x: 120,  y: 0,   z: -840,  targetX: 220,  targetY: -10, targetZ: -950 },  // 2: Earth
-            { x: -140, y: 45,  z: -1420, targetX: -280, targetY: 25,  targetZ: -1550 }, // 3: Saturn
-            { x: 0,    y: 0,   z: -1980, targetX: 0,    targetY: 0,   targetZ: -2300 }   // 4: Warp Gate
-        ];
+// Flight coordinates along the journey
+const cameraWaypoints = [
+    { x: 0, y: 10, z: 80, targetX: 0, targetY: 0, targetZ: -100 },  // 0: Launch
+    { x: -180, y: 35, z: -320, targetX: -350, targetY: 40, targetZ: -450 },  // 1: Sun
+    { x: 120, y: 0, z: -840, targetX: 220, targetY: -10, targetZ: -950 },  // 2: Earth
+    { x: -140, y: 45, z: -1420, targetX: -280, targetY: 25, targetZ: -1550 }, // 3: Saturn
+    { x: 0, y: 0, z: -1980, targetX: 0, targetY: 0, targetZ: -2300 }   // 4: Warp Gate
+];
 
-        let cameraLookAt = new THREE.Vector3(0, 0, -100);
-        let currentTargetLook = new THREE.Vector3(0, 0, -100);
-        let mouseX = 0, mouseY = 0;
-        let isFreeCamActive = false;
+let cameraLookAt = new THREE.Vector3(0, 0, -100);
+let currentTargetLook = new THREE.Vector3(0, 0, -100);
+let mouseX = 0, mouseY = 0;
+let isFreeCamActive = false;
 
-        // Smooth mouse gyro parallax
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth - 0.5) * 12;
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 12;
-        });
+// Smooth mouse gyro parallax
+window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 12;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 12;
+});
 
-        // Toggle Look Mode
-        const freeCamBtn = document.getElementById('camera-free-toggle');
-        if (freeCamBtn) {
-            freeCamBtn.addEventListener('click', () => {
-                isFreeCamActive = !isFreeCamActive;
-                freeCamBtn.children[1].textContent = isFreeCamActive ? "LOOK MODE: FREE" : "LOOK MODE: GYRO";
-                freeCamBtn.children[0].className = isFreeCamActive ? "w-2 h-2 rounded-full bg-cyan-400 animate-pulse" : "w-2 h-2 rounded-full bg-emerald-400";
-            });
+// Toggle Look Mode
+const freeCamBtn = document.getElementById('camera-free-toggle');
+if (freeCamBtn) {
+    freeCamBtn.addEventListener('click', () => {
+        isFreeCamActive = !isFreeCamActive;
+        freeCamBtn.children[1].textContent = isFreeCamActive ? "LOOK MODE: FREE" : "LOOK MODE: GYRO";
+        freeCamBtn.children[0].className = isFreeCamActive ? "w-2 h-2 rounded-full bg-cyan-400 animate-pulse" : "w-2 h-2 rounded-full bg-emerald-400";
+    });
+}
+
+// Connect GSAP ScrollTrigger to camera timeline
+const flightTimeline = gsap.timeline({
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5,
+        onUpdate: (self) => {
+            const prog = self.progress; // 0.0 to 1.0
+            updateTelemetryOnScroll(prog);
         }
+    }
+});
 
-        // Connect GSAP ScrollTrigger to camera timeline
-        const flightTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1.5,
-                onUpdate: (self) => {
-                    const prog = self.progress; // 0.0 to 1.0
-                    updateTelemetryOnScroll(prog);
-                }
-            }
-        });
+// Interpolate camera through waypoints across 4 intervals
+for (let i = 0; i < cameraWaypoints.length - 1; i++) {
+    const current = cameraWaypoints[i];
+    const next = cameraWaypoints[i + 1];
 
-        // Interpolate camera through waypoints across 4 intervals
-        for (let i = 0; i < cameraWaypoints.length - 1; i++) {
-            const current = cameraWaypoints[i];
-            const next = cameraWaypoints[i + 1];
+    flightTimeline.to(camera.position, {
+        x: next.x,
+        y: next.y,
+        z: next.z,
+        ease: "power1.inOut",
+        duration: 1
+    }, i);
 
-            flightTimeline.to(camera.position, {
-                x: next.x,
-                y: next.y,
-                z: next.z,
-                ease: "power1.inOut",
-                duration: 1
-            }, i);
+    flightTimeline.to(currentTargetLook, {
+        x: next.targetX,
+        y: next.targetY,
+        z: next.targetZ,
+        ease: "power1.inOut",
+        duration: 1
+    }, i);
+}
 
-            flightTimeline.to(currentTargetLook, {
-                x: next.targetX,
-                y: next.targetY,
-                z: next.targetZ,
-                ease: "power1.inOut",
-                duration: 1
-            }, i);
+function updateTelemetryOnScroll(progress) {
+    // Speed telemetry calculation
+    const speed = (0.18 + progress * 8.42).toFixed(2);
+    const speedEl = document.getElementById('hud-speed');
+    if (speedEl) speedEl.textContent = `${speed} c`;
+
+    // Active dot navigation indicator
+    const sectionIndex = Math.min(Math.floor(progress * 5), 4);
+    document.querySelectorAll('.nav-dot').forEach((dot, idx) => {
+        if (idx === sectionIndex) {
+            dot.className = "nav-dot w-3 h-3 rounded-full bg-cyan-400 scale-125 shadow-[0_0_10px_#00f0ff] transition-all";
+        } else {
+            dot.className = "nav-dot w-3 h-3 rounded-full bg-slate-700 transition-all hover:scale-125";
         }
+    });
 
-        function updateTelemetryOnScroll(progress) {
-            // Speed telemetry calculation
-            const speed = (0.18 + progress * 8.42).toFixed(2);
-            document.getElementById('hud-speed').textContent = `${speed} c`;
+    // Warp system streaks visibility increases toward section 5
+    if (progress > 0.7) {
+        warpMat.opacity = (progress - 0.7) * 3.0;
+    } else {
+        warpMat.opacity = 0.05;
+    }
 
-            // Active dot navigation indicator
-            const sectionIndex = Math.min(Math.floor(progress * 5), 4);
-            document.querySelectorAll('.nav-dot').forEach((dot, idx) => {
-                if (idx === sectionIndex) {
-                    dot.className = "nav-dot w-3 h-3 rounded-full bg-cyan-400 scale-125 shadow-[0_0_10px_#00f0ff] transition-all";
-                } else {
-                    dot.className = "nav-dot w-3 h-3 rounded-full bg-slate-700 transition-all hover:scale-125";
-                }
-            });
+    // Update Galactic Coordinates display
+    const raH = Math.floor(18 + progress * 4);
+    const decDeg = Math.floor(38 - progress * 24);
+    const coordEl = document.getElementById('hud-coordinates');
+    if (coordEl) coordEl.textContent = `RA ${raH}h 36m | DEC +${decDeg}° 12′`;
 
-            // Warp system streaks visibility increases toward section 5
-            if (progress > 0.7) {
-                warpMat.opacity = (progress - 0.7) * 3.0;
+    // Auto-hide scroll prompt once user starts navigating so it doesn't obstruct mobile cards
+    const scrollPrompt = document.getElementById('scroll-prompt');
+    if (scrollPrompt) {
+        if (progress > 0.03) {
+            scrollPrompt.style.opacity = '0';
+            scrollPrompt.style.pointerEvents = 'none';
+            scrollPrompt.style.transition = 'opacity 0.3s ease';
+        } else {
+            scrollPrompt.style.opacity = '1';
+            scrollPrompt.style.pointerEvents = 'auto';
+        }
+    }
+
+    // On mobile viewports, auto-hide the fixed coordinator card while scrolling through department cards
+    const hudCoordinator = document.getElementById('hud-coordinator');
+    if (hudCoordinator) {
+        if (window.innerWidth < 768) {
+            if (progress > 0.03 && progress < 0.95) {
+                hudCoordinator.style.opacity = '0';
+                hudCoordinator.style.pointerEvents = 'none';
             } else {
-                warpMat.opacity = 0.05;
+                hudCoordinator.style.opacity = '1';
+                hudCoordinator.style.pointerEvents = 'auto';
             }
-
-            // Update Galatic Coordinates display
-            const raH = Math.floor(18 + progress * 4);
-            const decDeg = Math.floor(38 - progress * 24);
-            document.getElementById('hud-coordinates').textContent = `RA ${raH}h 36m | DEC +${decDeg}° 12′`;
+        } else {
+            hudCoordinator.style.opacity = '1';
+            hudCoordinator.style.pointerEvents = 'auto';
         }
+    }
+}
 
-        function jumpToSection(index) {
-            const targetElem = document.getElementById(`sec-${index}`);
-            if (targetElem) {
-                targetElem.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+function jumpToSection(index) {
+    const targetElem = document.getElementById(`sec-${index}`);
+    if (targetElem) {
+        targetElem.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 
-        // Warp Button Burst Effect
-        let isHyperdriveBoosting = false;
-        const warpBtn = document.getElementById('warp-btn');
-        warpBtn.addEventListener('click', () => {
-            if (isHyperdriveBoosting) return;
-            isHyperdriveBoosting = true;
-            triggerWarpSound();
+// Warp Button Burst Effect
+let isHyperdriveBoosting = false;
+const warpBtn = document.getElementById('warp-btn');
+if (warpBtn) {
+    warpBtn.addEventListener('click', () => {
+        if (isHyperdriveBoosting) return;
+        isHyperdriveBoosting = true;
 
-            warpBtn.innerHTML = `WARP CONVERGENCE ACTIVE...`;
-            warpBtn.classList.add('animate-pulse');
-
-            gsap.to(camera.position, {
-                z: "-=350",
-                duration: 2.2,
-                ease: "power3.in",
-                onComplete: () => {
-                    gsap.to(camera.position, {
-                        z: -1980,
-                        duration: 1.5,
-                        ease: "power2.out",
-                        onComplete: () => {
-                            isHyperdriveBoosting = false;
-                            warpBtn.innerHTML = `⚡ ENGAGE HYPERDRIVE`;
-                            warpBtn.classList.remove('animate-pulse');
-                        }
-                    });
-                }
-            });
-
-            gsap.to(warpMat, {
-                size: 6.0,
-                opacity: 1.0,
-                duration: 1.2,
-                yoyo: true,
-                repeat: 1
-            });
-        });
-
-// System Clock HUD
-        function updateClock() {
-            const clockEl = document.getElementById('hud-clock');
-            if (!clockEl) return;
-            const now = new Date();
-            const y = now.getUTCFullYear();
-            const m = String(now.getUTCMonth() + 1).padStart(2, '0');
-            const d = String(now.getUTCDate()).padStart(2, '0');
-            const hh = String(now.getUTCHours()).padStart(2, '0');
-            const mm = String(now.getUTCMinutes()).padStart(2, '0');
-            const ss = String(now.getUTCSeconds()).padStart(2, '0');
-            clockEl.textContent = `${y}.${m}.${d} // ${hh}:${mm}:${ss} UTC`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Responsive Resize Listener
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.5));
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Animation Loop
-        const clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const delta = clock.getDelta();
-            const elapsedTime = clock.getElapsedTime();
-
-            // Animate Starfield Twinkle
-            if (typeof starMat !== 'undefined' && starMat.uniforms && starMat.uniforms.uTime) {
-                starMat.uniforms.uTime.value = elapsedTime;
-            }
-
-            // Animate Elegant Meteor Streaks
-            if (typeof updateMeteors === 'function') {
-                updateMeteors(delta, elapsedTime);
-            }
-
-            // Animate Tumbling Deep-Space Floating Asteroids & Stone Meteorites
-            if (typeof floatingStones !== 'undefined') {
-                for (let sIdx = 0; sIdx < floatingStones.length; sIdx++) {
-                    const st = floatingStones[sIdx];
-                    st.mesh.rotation.x += st.rot.x;
-                    st.mesh.rotation.y += st.rot.y;
-                    st.mesh.rotation.z += st.rot.z;
-                    st.mesh.position.x += st.drift.x * delta;
-                    st.mesh.position.y += st.drift.y * delta;
-                    st.mesh.position.z += st.drift.z * delta;
-                }
-            }
-
-            // Rotate & Animate Sun (SDO Convective Boiling, Dynamic Multi-Region Prominences & CME Spark Jets)
-            sunMesh.rotation.y += 0.0015;
-            if (sunMat && sunMat.uniforms && sunMat.uniforms.uTime) {
-                sunMat.uniforms.uTime.value = elapsedTime;
-            }
-            if (typeof prominenceMaterials !== 'undefined') {
-                for (let pIdx = 0; pIdx < prominenceMaterials.length; pIdx++) {
-                    prominenceMaterials[pIdx].uniforms.uTime.value = elapsedTime;
-                }
-            }
-            // Animate dynamic erupting CME plasma spark jets from active regions
-            if (typeof cmeGeo !== 'undefined' && typeof cmeVelocities !== 'undefined') {
-                const cmePosArr = cmeGeo.attributes.position.array;
-                for (let i = 0; i < cmeCount; i++) {
-                    const v = cmeVelocities[i];
-                    // Check if particle's zone is currently erupting
-                    const zoneCycle = Math.sin(elapsedTime * 0.35 + (v.zoneIdx * Math.PI * 0.5));
-                    const isErupting = zoneCycle > -0.25;
-                    v.dist += v.speed * (isErupting ? 1.0 : 0.2);
-                    if (v.dist > v.maxDist) {
-                        v.dist = 0;
-                        const baseAngle = cmeAngles[v.zoneIdx] + (Math.random() - 0.5) * 16.0;
-                        const pt = createLimbPoint(baseAngle, 75.0, (Math.random() - 0.5) * 6.0);
-                        cmePosArr[i * 3] = pt.x;
-                        cmePosArr[i * 3 + 1] = pt.y;
-                        cmePosArr[i * 3 + 2] = pt.z;
-                    } else {
-                        cmePosArr[i * 3] += v.dir.x * v.speed;
-                        cmePosArr[i * 3 + 1] += v.dir.y * v.speed;
-                        cmePosArr[i * 3 + 2] += v.dir.z * v.speed;
+        gsap.to(camera.position, {
+            z: "-=350",
+            duration: 2.2,
+            ease: "power3.in",
+            onComplete: () => {
+                gsap.to(camera.position, {
+                    z: -1980,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        isHyperdriveBoosting = false;
                     }
-                }
-                cmeGeo.attributes.position.needsUpdate = true;
-            }
-            sunGlow.rotation.y += 0.0006;
-            const sunPulse = 1.0 + Math.sin(elapsedTime * 1.8) * 0.012;
-            sunGlow.scale.set(sunPulse, sunPulse, sunPulse);
-
-            earthMesh.rotation.y += 0.0007;
-            cloudsMesh.rotation.y += 0.0011; // Clouds drift realistically across the landmasses
-
-            // Animate Earth's Moon (Luna) with exact same orbital speed as Saturn's moon (~15.7s cycle)
-            if (typeof moonGroup !== 'undefined' && moonGroup) {
-                moonMesh.rotation.y += 0.004;
-                const moonAngle = elapsedTime * 0.40 + 2.2;
-                moonGroup.position.x = earthGroup.position.x + Math.cos(moonAngle) * 125;
-                moonGroup.position.y = earthGroup.position.y - 12 + Math.sin(moonAngle * 1.3) * 16;
-                moonGroup.position.z = earthGroup.position.z + Math.sin(moonAngle) * 125;
-            }
-
-            saturnMesh.rotation.y += 0.0045;
-            ringMesh.rotation.z += 0.0008;
-            debrisField.rotation.y += 0.0015;
-
-            // Animate Saturn's Moon Titan in frequent orbit (increased speed ~15s per cycle)
-            if (typeof titanGroup !== 'undefined' && titanGroup) {
-                titanMesh.rotation.y += 0.008;
-                const titanAngle = elapsedTime * 0.40;
-                titanGroup.position.x = saturnGroup.position.x + Math.cos(titanAngle) * 165;
-                titanGroup.position.y = saturnGroup.position.y + 12 + Math.sin(titanAngle) * 25;
-                titanGroup.position.z = saturnGroup.position.z + Math.sin(titanAngle) * 165;
-            }
-
-            // Orbit & Tumble 3D Asteroid Rocks
-            if (typeof asteroidGroup !== 'undefined' && asteroidGroup) {
-                asteroidGroup.rotation.y += 0.0012;
-                asteroidGroup.children.forEach((rock, rIdx) => {
-                    rock.rotation.x += 0.006 * (rIdx % 2 === 0 ? 1 : -1);
-                    rock.rotation.y += 0.004;
                 });
             }
+        });
 
-            // Animate Warp Singularity Toruses & Relativistic Accretion Disk
-            warpTorus.rotation.x = elapsedTime * 0.8;
-            warpTorus.rotation.y = elapsedTime * 0.6;
-            warpTorus2.rotation.z = -elapsedTime * 1.2;
-            if (typeof accretionDisk !== 'undefined' && accretionDisk) {
-                accretionDisk.rotation.z = elapsedTime * 0.55;
-            }
+        gsap.to(warpMat, {
+            size: 6.0,
+            opacity: 1.0,
+            duration: 1.2,
+            yoyo: true,
+            repeat: 1
+        });
+    });
+}
 
-            // Twinkle and drift stars
-            starField.rotation.y = elapsedTime * 0.0003;
+// System Clock HUD
+function updateClock() {
+    const clockEl = document.getElementById('hud-clock');
+    if (!clockEl) return;
+    const now = new Date();
+    const y = now.getUTCFullYear();
+    const m = String(now.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(now.getUTCDate()).padStart(2, '0');
+    const hh = String(now.getUTCHours()).padStart(2, '0');
+    const mm = String(now.getUTCMinutes()).padStart(2, '0');
+    const ss = String(now.getUTCSeconds()).padStart(2, '0');
+    clockEl.textContent = `${y}.${m}.${d} // ${hh}:${mm}:${ss} UTC`;
+}
+setInterval(updateClock, 1000);
+updateClock();
 
-            // Animate warp particles forward
-            const warpPosAttr = warpGeo.attributes.position;
-            const positions = warpPosAttr.array;
-            const warpSpeedMultiplier = isHyperdriveBoosting ? 90 : 8;
+// Responsive Resize Listener & Mobile FOV Calibration
+function handleWindowResize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    camera.aspect = w / h;
+    // On narrower / portrait screens, adjust vertical FOV to preserve framing of celestial bodies
+    if (w < 768) {
+        camera.fov = 62;
+    } else {
+        camera.fov = 50;
+    }
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h);
+    const hudCoord = document.getElementById('hud-coordinator');
+    if (hudCoord && w >= 768) {
+        hudCoord.style.opacity = '1';
+        hudCoord.style.pointerEvents = 'auto';
+    }
+}
+window.addEventListener('resize', handleWindowResize);
+handleWindowResize();
 
-            for (let i = 0; i < warpCount; i++) {
-                positions[i * 3 + 2] += warpSpeedMultiplier;
-                if (positions[i * 3 + 2] > camera.position.z + 50) {
-                    positions[i * 3 + 2] = camera.position.z - 600 - Math.random() * 400;
-                }
-            }
-            warpPosAttr.needsUpdate = true;
+// Animation Loop
+const clock = new THREE.Clock();
 
-            // Camera orientation smoothing
-            if (isFreeCamActive) {
-                cameraLookAt.x += (currentTargetLook.x + mouseX * 6.0 - cameraLookAt.x) * 0.05;
-                cameraLookAt.y += (currentTargetLook.y - mouseY * 6.0 - cameraLookAt.y) * 0.05;
-                cameraLookAt.z += (currentTargetLook.z - cameraLookAt.z) * 0.05;
-            } else {
-                cameraLookAt.x += (currentTargetLook.x + mouseX * 1.5 - cameraLookAt.x) * 0.05;
-                cameraLookAt.y += (currentTargetLook.y - mouseY * 1.5 - cameraLookAt.y) * 0.05;
-                cameraLookAt.z += (currentTargetLook.z - cameraLookAt.z) * 0.05;
-            }
-            camera.lookAt(cameraLookAt);
+function animate() {
+    requestAnimationFrame(animate);
+    const delta = clock.getDelta();
+    const elapsedTime = clock.getElapsedTime();
 
-            renderer.render(scene, camera);
+    // Animate Starfield Twinkle
+    if (typeof starMat !== 'undefined' && starMat.uniforms && starMat.uniforms.uTime) {
+        starMat.uniforms.uTime.value = elapsedTime;
+    }
+
+    // Animate Elegant Meteor Streaks
+    if (typeof updateMeteors === 'function') {
+        updateMeteors(delta, elapsedTime);
+    }
+
+    // Animate Tumbling Deep-Space Floating Asteroids & Stone Meteorites
+    if (typeof floatingStones !== 'undefined') {
+        for (let sIdx = 0; sIdx < floatingStones.length; sIdx++) {
+            const st = floatingStones[sIdx];
+            st.mesh.rotation.x += st.rot.x;
+            st.mesh.rotation.y += st.rot.y;
+            st.mesh.rotation.z += st.rot.z;
+            st.mesh.position.x += st.drift.x * delta;
+            st.mesh.position.y += st.drift.y * delta;
+            st.mesh.position.z += st.drift.z * delta;
         }
+    }
 
-        // Initialize on load
-        window.onload = function() {
-            animate();
-            // Trigger initial scroll update
-            ScrollTrigger.refresh();
-        };
+    // Rotate & Animate Sun (SDO Convective Boiling, Dynamic Multi-Region Prominences & CME Spark Jets)
+    sunMesh.rotation.y += 0.0015;
+    if (sunMat && sunMat.uniforms && sunMat.uniforms.uTime) {
+        sunMat.uniforms.uTime.value = elapsedTime;
+    }
+    if (typeof prominenceMaterials !== 'undefined') {
+        for (let pIdx = 0; pIdx < prominenceMaterials.length; pIdx++) {
+            prominenceMaterials[pIdx].uniforms.uTime.value = elapsedTime;
+        }
+    }
+    // Animate dynamic erupting CME plasma spark jets from active regions
+    if (typeof cmeGeo !== 'undefined' && typeof cmeVelocities !== 'undefined') {
+        const cmePosArr = cmeGeo.attributes.position.array;
+        for (let i = 0; i < cmeCount; i++) {
+            const v = cmeVelocities[i];
+            // Check if particle's zone is currently erupting
+            const zoneCycle = Math.sin(elapsedTime * 0.35 + (v.zoneIdx * Math.PI * 0.5));
+            const isErupting = zoneCycle > -0.25;
+            v.dist += v.speed * (isErupting ? 1.0 : 0.2);
+            if (v.dist > v.maxDist) {
+                v.dist = 0;
+                const baseAngle = cmeAngles[v.zoneIdx] + (Math.random() - 0.5) * 16.0;
+                const pt = createLimbPoint(baseAngle, 75.0, (Math.random() - 0.5) * 6.0);
+                cmePosArr[i * 3] = pt.x;
+                cmePosArr[i * 3 + 1] = pt.y;
+                cmePosArr[i * 3 + 2] = pt.z;
+            } else {
+                cmePosArr[i * 3] += v.dir.x * v.speed;
+                cmePosArr[i * 3 + 1] += v.dir.y * v.speed;
+                cmePosArr[i * 3 + 2] += v.dir.z * v.speed;
+            }
+        }
+        cmeGeo.attributes.position.needsUpdate = true;
+    }
+    sunGlow.rotation.y += 0.0006;
+    const sunPulse = 1.0 + Math.sin(elapsedTime * 1.8) * 0.012;
+    sunGlow.scale.set(sunPulse, sunPulse, sunPulse);
 
-        // =====================================================
+    earthMesh.rotation.y += 0.0007;
+    cloudsMesh.rotation.y += 0.0011; // Clouds drift realistically across the landmasses
+
+    // Animate Earth's Moon (Luna) with exact same orbital speed as Saturn's moon (~15.7s cycle)
+    if (typeof moonGroup !== 'undefined' && moonGroup) {
+        moonMesh.rotation.y += 0.004;
+        const moonAngle = elapsedTime * 0.40 + 2.2;
+        moonGroup.position.x = earthGroup.position.x + Math.cos(moonAngle) * 125;
+        moonGroup.position.y = earthGroup.position.y - 12 + Math.sin(moonAngle * 1.3) * 16;
+        moonGroup.position.z = earthGroup.position.z + Math.sin(moonAngle) * 125;
+    }
+
+    saturnMesh.rotation.y += 0.0045;
+    ringMesh.rotation.z += 0.0008;
+    debrisField.rotation.y += 0.0015;
+
+    // Animate Saturn's Moon Titan in frequent orbit (increased speed ~15s per cycle)
+    if (typeof titanGroup !== 'undefined' && titanGroup) {
+        titanMesh.rotation.y += 0.008;
+        const titanAngle = elapsedTime * 0.40;
+        titanGroup.position.x = saturnGroup.position.x + Math.cos(titanAngle) * 165;
+        titanGroup.position.y = saturnGroup.position.y + 12 + Math.sin(titanAngle) * 25;
+        titanGroup.position.z = saturnGroup.position.z + Math.sin(titanAngle) * 165;
+    }
+
+    // Orbit & Tumble 3D Asteroid Rocks
+    if (typeof asteroidGroup !== 'undefined' && asteroidGroup) {
+        asteroidGroup.rotation.y += 0.0012;
+        asteroidGroup.children.forEach((rock, rIdx) => {
+            rock.rotation.x += 0.006 * (rIdx % 2 === 0 ? 1 : -1);
+            rock.rotation.y += 0.004;
+        });
+    }
+
+    // Animate Warp Singularity Toruses & Relativistic Accretion Disk
+    warpTorus.rotation.x = elapsedTime * 0.8;
+    warpTorus.rotation.y = elapsedTime * 0.6;
+    warpTorus2.rotation.z = -elapsedTime * 1.2;
+    if (typeof accretionDisk !== 'undefined' && accretionDisk) {
+        accretionDisk.rotation.z = elapsedTime * 0.55;
+    }
+
+    // Twinkle and drift stars
+    starField.rotation.y = elapsedTime * 0.0003;
+
+    // Animate warp particles forward
+    const warpPosAttr = warpGeo.attributes.position;
+    const positions = warpPosAttr.array;
+    const warpSpeedMultiplier = isHyperdriveBoosting ? 90 : 8;
+
+    for (let i = 0; i < warpCount; i++) {
+        positions[i * 3 + 2] += warpSpeedMultiplier;
+        if (positions[i * 3 + 2] > camera.position.z + 50) {
+            positions[i * 3 + 2] = camera.position.z - 600 - Math.random() * 400;
+        }
+    }
+    warpPosAttr.needsUpdate = true;
+
+    // Camera orientation smoothing
+    if (isFreeCamActive) {
+        cameraLookAt.x += (currentTargetLook.x + mouseX * 6.0 - cameraLookAt.x) * 0.05;
+        cameraLookAt.y += (currentTargetLook.y - mouseY * 6.0 - cameraLookAt.y) * 0.05;
+        cameraLookAt.z += (currentTargetLook.z - cameraLookAt.z) * 0.05;
+    } else {
+        cameraLookAt.x += (currentTargetLook.x + mouseX * 1.5 - cameraLookAt.x) * 0.05;
+        cameraLookAt.y += (currentTargetLook.y - mouseY * 1.5 - cameraLookAt.y) * 0.05;
+        cameraLookAt.z += (currentTargetLook.z - cameraLookAt.z) * 0.05;
+    }
+    camera.lookAt(cameraLookAt);
+
+    renderer.render(scene, camera);
+}
+
+// Initialize on load
+window.onload = function () {
+    animate();
+    // Trigger initial scroll update
+    ScrollTrigger.refresh();
+};
+
+// =====================================================
 // TECHFEST' 26 COUNTDOWN TIMER
 // Target: October 17, 2026
 // =====================================================
@@ -2202,7 +2245,7 @@ const deptEventsData = {
     cse: {
         code: "01 // CSE ARENA",
         name: "COMPUTER SCIENCE & ENGINEERING",
-        badge: "5 CHAMPIONSHIP EVENTS • 10 OCT 2026",
+        badge: "6 CHAMPIONSHIP EVENTS • 17 OCT 2026",
         arenaUrl: "../cse/cse.html",
         accentColor: "cyan",
         borderClass: "border-cyan-400/50",
@@ -2211,37 +2254,44 @@ const deptEventsData = {
         events: [
             {
                 num: "01",
-                tag: "RESEARCH // PRESENTATION",
+                tag: "TECHNICAL // PRESENTATION",
                 title: "PAPER PRESENTATION",
-                desc: "Present research breakthroughs in Cloud Computing, Quantum Computing, Distributed Systems, Web3 or Neural Interfaces.",
+                desc: "Abstract submission required before deadline (250–300 words). Focus on emerging tech: AI, ML, Cybersecurity, IoT, Cloud.",
                 rulesLink: "../cse/cse.html#events"
             },
             {
                 num: "02",
-                tag: "PRODUCT // INTERFACE",
-                title: "UI UX DESIGN (VIBE CODING)",
-                desc: "Turn a real-time prompt into an immersive interface using Figma, Penpot or pure front-end code.",
+                tag: "HACKATHON // SPRINT",
+                title: "HACKATHON",
+                desc: "Problem statements announced at start. Write code during event duration. Bring your own hardware/laptops.",
                 rulesLink: "../cse/cse.html#events"
             },
             {
                 num: "03",
-                tag: "APP // DEVELOPMENT",
-                title: "MOBILE APPLICATION DEVELOPMENT",
-                desc: "Demonstrate deployed mobile solutions across Flutter, React Native, Kotlin or Swift with live code review.",
+                tag: "PROJECT // EXPO",
+                title: "PROJECT EXPO (MOBILE APP DEVELOPMENT)",
+                desc: "Working mobile applications (Android/iOS/Flutter/React Native) with architecture diagram display and live demo.",
                 rulesLink: "../cse/cse.html#events"
             },
             {
                 num: "04",
-                tag: "COMPETITIVE // PROGRAMMING",
-                title: "SPEED CODING",
-                desc: "Race against time to debug, write and execute error-free code across escalating test scenarios.",
+                tag: "AI // POSTER MAKING",
+                title: "SNAP WITH AI (POSTER MAKING)",
+                desc: "Create high-impact visual posters using AI image generators (Midjourney, DALL-E, Leonardo AI, Canva AI). Prompts logged.",
                 rulesLink: "../cse/cse.html#events"
             },
             {
                 num: "05",
-                tag: "PROBLEM // SOLVING",
-                title: "ALGORITHM CHALLENGE",
-                desc: "Tackle Dynamic Programming, Graph Theory, Greedy approaches and Tree traversal brainteasers.",
+                tag: "TECH // QUIZ",
+                title: "CYBER HUNT (TECHNICAL QUIZ)",
+                desc: "Round 1 (Prelims): MCQs on Networking, OS, Cryptography, Security. Round 2 (Finals): CTF challenges and log analysis.",
+                rulesLink: "../cse/cse.html#events"
+            },
+            {
+                num: "06",
+                tag: "PROMPT // BATTLE",
+                title: "AI PROMPT BATTLE (USING CLAUDE AI)",
+                desc: "Identical target output requirements. Competitors write and refine prompts using Claude AI within time limit.",
                 rulesLink: "../cse/cse.html#events"
             }
         ]
@@ -2249,7 +2299,7 @@ const deptEventsData = {
     aids: {
         code: "02 // AI & DS ARENA",
         name: "ARTIFICIAL INTELLIGENCE & DATA SCIENCE",
-        badge: "5 INTELLIGENT MODULES • 10 OCT 2026",
+        badge: "5 INTELLIGENT MODULES • 17 OCT 2026",
         arenaUrl: "../ai&ds/aids.html",
         accentColor: "yellow",
         borderClass: "border-yellow-400/50",
@@ -2259,36 +2309,36 @@ const deptEventsData = {
             {
                 num: "01",
                 tag: "RESEARCH // PRESENTATION",
-                title: "PRO-PITCH-PROMPT TO APP",
-                desc: "Pitch next-generation generative AI, prompt engineering applications and automated neural workflows.",
+                title: "PAPER PRESENTATION",
+                desc: "Participants present a research-based or innovative technical topic before judges using PowerPoint.",
                 rulesLink: "../ai&ds/aids.html#events"
             },
             {
                 num: "02",
-                tag: "PRODUCT // INTERFACE",
-                title: "BUG BUSTER-CODE DEBUGGING",
-                desc: "Hunt down algorithmic anomalies, optimize AI inference pipelines and fix flawed code under pressure.",
+                tag: "PROMPT // APP INNOVATION",
+                title: "PRO-PITCH (PROMPT TO APP)",
+                desc: "Participants use AI prompts to develop a functional app based on an app/idea selected through a Lucky Draw.",
                 rulesLink: "../ai&ds/aids.html#events"
             },
             {
                 num: "03",
-                tag: "APP // DEVELOPMENT",
-                title: "PAPER PRESENTATION",
-                desc: "Showcase groundbreaking papers on Deep Learning, NLP, Autonomous Robotics and Computer Vision.",
+                tag: "DATA // VISUALIZATION",
+                title: "VIZ CRAFT (AI DATA VISUALIZATION)",
+                desc: "Analyze a given dataset and use AI-assisted tools to create meaningful visualizations and communicate useful insights.",
                 rulesLink: "../ai&ds/aids.html#events"
             },
             {
                 num: "04",
-                tag: "COMPETITIVE // PROGRAMMING",
-                title: "INNOVATION SHOWCASE-PROJECT EXPO",
-                desc: "Demonstrate working AI models, intelligent hardware-software IoT prototypes and predictive analytics.",
+                tag: "MULTI-LANG // CODING",
+                title: "CODE FLEX (MULTI-LANGUAGE CODING CHALLENGE)",
+                desc: "Solve programming problems using a programming language of choice (Python, Java, C, C++) without internet or AI.",
                 rulesLink: "../ai&ds/aids.html#events"
             },
             {
                 num: "05",
-                tag: "PROBLEM // SOLVING",
-                title: "MIND MATRIX-QUIZ",
-                desc: "High-octane AI/DS technical quiz spanning data science logic, linear algebra and neural architecture.",
+                tag: "INTELLIGENCE // QUIZ",
+                title: "COGNIX (QUIZ)",
+                desc: "Compete in a 2-round technical quiz covering AI, Data Science, Machine Learning, Deep Learning, and Generative AI.",
                 rulesLink: "../ai&ds/aids.html#events"
             }
         ]
@@ -2296,7 +2346,7 @@ const deptEventsData = {
     it: {
         code: "03 // IT ARENA",
         name: "INFORMATION TECHNOLOGY",
-        badge: "5 INNOVATIVE MODULES • 10 OCT 2026",
+        badge: "6 INNOVATIVE MODULES • 17 OCT 2026",
         arenaUrl: "../it/it.html",
         accentColor: "darkblue",
         borderClass: "border-blue-500/50",
@@ -2305,37 +2355,44 @@ const deptEventsData = {
         events: [
             {
                 num: "01",
-                tag: "TECHNICAL // TALK",
-                title: "PAPER PRESENTATION (TECH TALKS)",
-                desc: "Present on Cloud Native DevOps, 5G/6G paradigms, edge telemetry, and enterprise microservices.",
+                tag: "RESEARCH // PRESENTATION",
+                title: "PAPER PRESENTATION: INNOPAPERS",
+                desc: "The Spectrum of Innovation — Choose an innovative topic, prepare informative slides, and present original paper.",
                 rulesLink: "../it/it.html#events"
             },
             {
                 num: "02",
-                tag: "INNOVATION // ARENA",
-                title: "PROJECT EXPO (INNOVATION ARENA)",
-                desc: "Showcase software systems, cloud dashboards, IoT smart grids, and progressive web apps to technical jury.",
+                tag: "AI // PROMPT BATTLE",
+                title: "CLAUDE PROMPT BATTLE",
+                desc: "Create optimal prompts for Claude AI to solve specific tasks and generate required solutions under timed scoring.",
                 rulesLink: "../it/it.html#events"
             },
             {
                 num: "03",
-                tag: "VISUAL // VISION",
-                title: "POSTER PRESENTATION (VISUAL VISION)",
-                desc: "Synthesize emerging technological paradigms into visually compelling infographical charts and posters.",
+                tag: "WEB // ARCHITECTURE",
+                title: "WEB ARCHITECTS",
+                desc: "Create a website during the event based on the announced theme within 45–60 minutes, evaluated on UI, creativity, and responsiveness.",
                 rulesLink: "../it/it.html#events"
             },
             {
                 num: "04",
                 tag: "CODE // DEBUGGING",
-                title: "CODE DEBUGGING (CODE STROM)",
-                desc: "Unravel spaghetti code, locate compilation and runtime faults, and optimize degraded codebases.",
+                title: "CODE DEBUGGING (BUG HUNT)",
+                desc: "Compete across Round 1 (Preliminary debugging) and Round 2 (Advanced debugging) in C, C++, Java, or Python.",
                 rulesLink: "../it/it.html#events"
             },
             {
                 num: "05",
-                tag: "FRONTEND // MASTERY",
-                title: "WEB DESIGN (WEB WIZARDS)",
-                desc: "Build responsive, ultra-slick landing pages from scratch with modern HTML, CSS, JavaScript, and animations.",
+                tag: "PITCH // DISPLAY",
+                title: "POSTER PITCH",
+                desc: "Present creative technical posters on chosen topics with clear information, diagrams, and visual designs.",
+                rulesLink: "../it/it.html#events"
+            },
+            {
+                num: "06",
+                tag: "PROJECT // SHOWCASE",
+                title: "PROJECT PRESENTATION",
+                desc: "Present innovative and original projects with PPT presentation (5–7 mins) followed by Q&A (2–3 mins).",
                 rulesLink: "../it/it.html#events"
             }
         ]
@@ -2343,7 +2400,7 @@ const deptEventsData = {
     ece: {
         code: "04 // ECE ARENA",
         name: "ELECTRONICS & COMMUNICATION ENGINEERING",
-        badge: "5 HARDWARE & EMBEDDED EVENTS • 17 OCT 2026",
+        badge: "6 HARDWARE & EMBEDDED EVENTS • 17 OCT 2026",
         arenaUrl: "../ece/ece.html",
         accentColor: "red",
         borderClass: "border-red-500/50",
@@ -2354,43 +2411,50 @@ const deptEventsData = {
                 num: "01",
                 tag: "TECHNICAL // PRESENTATION",
                 title: "PAPER PRESENTATION",
-                desc: "Present technical research, VLSI architectures, wireless communication, and embedded hardware innovations.",
+                desc: "Present original research papers and technical concepts on emerging areas of ECE like 5G/6G, VLSI, IoT, and AI/ML.",
                 rulesLink: "../ece/ece.html#events"
             },
             {
                 num: "02",
-                tag: "PROJECT // INNOVATION",
-                title: "PROTO MANIA",
-                desc: "Showcase innovative electronic prototypes, IoT controllers, and hardware engineering projects.",
+                tag: "PROJECT // EXPO",
+                title: "PROJECT EXPO",
+                desc: "Showcase innovative practical ECE applications, IoT systems, automation prototypes, and hardware engineering projects.",
                 rulesLink: "../ece/ece.html#events"
             },
             {
                 num: "03",
                 tag: "CIRCUIT // DEBUGGING",
-                title: "CIRCUIT HUNT",
-                desc: "Find circuit errors, analyze electronic schematics and solve real-time hardware debugging challenges.",
+                title: "CIRCUIT DEBUGGING",
+                desc: "Identify and rectify faults in given electronic circuits, testing circuit analysis and troubleshooting speed.",
                 rulesLink: "../ece/ece.html#events"
             },
             {
                 num: "04",
-                tag: "STARTUP // INNOVATION",
-                title: "STARTUP PITCHING",
-                desc: "Pitch high-impact hardware-tech startups, market-ready embedded devices, and commercial feasibility.",
+                tag: "DRONE // INNOVATION",
+                title: "DRONOVA",
+                desc: "Perform technical drone and UAV tasks demonstrating flight control, aerial stability, maneuvers, and safety protocols.",
                 rulesLink: "../ece/ece.html#events"
             },
             {
                 num: "05",
-                tag: "TECHNICAL // QUIZ",
-                title: "PICTURE REBUS",
-                desc: "Decipher cryptic electronic visual puzzles, technical symbolisms, and component schematics.",
+                tag: "TACTICAL // ESCAPE QUEST",
+                title: "TECH ESCAPE ROOM",
+                desc: "Solve electronics and technology-based puzzles and challenges under time pressure to unlock stages and escape.",
+                rulesLink: "../ece/ece.html#events"
+            },
+            {
+                num: "06",
+                tag: "HARDWARE // HACKATHON",
+                title: "ECE HACKATHON",
+                desc: "Develop innovative solutions to given ECE problem statements across Embedded Systems, IoT, AI, or Communication.",
                 rulesLink: "../ece/ece.html#events"
             }
         ]
     },
     cyber: {
         code: "05 // CYBER ARENA",
-        name: "CYBER SECURITY",
-        badge: "5 THREAT DEFENSE EVENTS • 10 OCT 2026",
+        name: "COMPUTER SCIENCE & ENGINEERING (CYBER SECURITY)",
+        badge: "6 THREAT DEFENSE EVENTS • 17 OCT 2026",
         arenaUrl: "../cyber/cyber.html",
         accentColor: "orange",
         borderClass: "border-orange-500/50",
@@ -2400,36 +2464,43 @@ const deptEventsData = {
             {
                 num: "01",
                 tag: "RESEARCH // PRESENTATION",
-                title: "PAPER PRESENTATION",
-                desc: "Present research on zero-trust architectures, cloud security, cryptography, and ransomware defense.",
+                title: "CYBER PAPER PRESENTATION",
+                desc: "Abstract submission required before deadline (250–300 words). Focus on cybersecurity, ethical hacking, network security, forensics, cryptography, or privacy.",
                 rulesLink: "../cyber/cyber.html#events"
             },
             {
                 num: "02",
-                tag: "INTEL // CHALLENGE",
-                title: "QUIZ (CYBER SECURITY)",
-                desc: "Screening on info security fundamentals, network defense protocols, and legendary cyber exploits.",
+                tag: "INTEL // QUIZ",
+                title: "CYBER HUNT (TECHNICAL QUIZ)",
+                desc: "Round 1 (CRT & technical), Round 2 (CRT & technical), and Round 3 Rapid Fire with 10 questions to be answered within 100 seconds.",
                 rulesLink: "../cyber/cyber.html#events"
             },
             {
                 num: "03",
-                tag: "WEB // DEFENSE",
-                title: "PHISHING WEBSITE",
-                desc: "Inspect spoofed domains, detect fake authentication portals, and evaluate tactical phishing defense.",
+                tag: "DEFENSE // DETECTION",
+                title: "PHISHGUARD: PHISHING WEBSITE DETECTION",
+                desc: "3 levels of phishing identification. Participants analyze messages, emails, websites, or screenshots to identify Phishing vs Legitimate.",
                 rulesLink: "../cyber/cyber.html#events"
             },
             {
                 num: "04",
                 tag: "TACTICAL // SURVIVAL",
-                title: "CYBER ESCAPE ROOM",
-                desc: "Crack encrypted ciphers, escalate terminal privileges, decode steganography, and escape before lockdown!",
+                title: "CYBER ESCAPE ROOM: INCIDENT RESPONSE CHALLENGE",
+                desc: "Teams solve a sequence of cybersecurity puzzles (password hygiene, phishing, log analysis, cryptography) to unlock the final code.",
                 rulesLink: "../cyber/cyber.html#events"
             },
             {
                 num: "05",
                 tag: "KEYNOTE // INNOVATION",
-                title: "TECH TALKS",
-                desc: "Present modern cyber warfare frontiers, quantum encryption, ethical hacking, and threat intelligence.",
+                title: "CYBERSECURITY SPOTLIGHT: TECH TALKS",
+                desc: "5–7 minute presentation followed by 2–3 minutes Q&A on AI security, cloud security, digital forensics, or privacy.",
+                rulesLink: "../cyber/cyber.html#events"
+            },
+            {
+                num: "06",
+                tag: "SECURITY // HACKATHON",
+                title: "CYBERSECURE HACKATHON",
+                desc: "Cybersecurity problem statements announced at start; teams build working prototypes and defenses on authorized systems.",
                 rulesLink: "../cyber/cyber.html#events"
             }
         ]
@@ -2437,7 +2508,7 @@ const deptEventsData = {
     eee: {
         code: "06 // EEE ARENA",
         name: "ELECTRICAL & ELECTRONICS ENGINEERING",
-        badge: "5 HIGH-VOLTAGE EVENTS • OCT 2026",
+        badge: "5 HIGH-VOLTAGE EVENTS • 17 OCT 2026",
         arenaUrl: "../eee/eee.html",
         accentColor: "indigo",
         borderClass: "border-indigo-500/50",
@@ -2454,29 +2525,29 @@ const deptEventsData = {
             {
                 num: "02",
                 tag: "PROJECT // EXPO",
-                title: "POWER AND INNOVATION",
+                title: "PROJECT EXPO",
                 desc: "Showcase working power systems, smart metering, motor controllers, and sustainable energy projects.",
                 rulesLink: "../eee/eee.html#events"
             },
             {
                 num: "03",
-                tag: "CIRCUIT // DESIGNING",
-                title: "BRAIN WIRED",
-                desc: "Design complex power logic circuits, PCB layouts, and simulate electrical response characteristics.",
+                tag: "QUIZ // TECHNICAL",
+                title: "TECHNICAL QUIZ",
+                desc: "Speed quiz covering electromagnetism, electric machines, power grid stability, and modern sensors.",
                 rulesLink: "../eee/eee.html#events"
             },
             {
                 num: "04",
-                tag: "CIRCUIT // DEBUGGING",
-                title: "WIRE WARS",
+                tag: "CIRCUIT // WARRIORS",
+                title: "CIRCUIT WARRIORS",
                 desc: "Diagnose short circuits, trace phase anomalies, and debug live electrical bench circuitry.",
                 rulesLink: "../eee/eee.html#events"
             },
             {
                 num: "05",
-                tag: "QUIZ // TECHNICAL",
-                title: "QUIZTRONIC",
-                desc: "Speed quiz covering electromagnetism, electric machines, power grid stability, and modern sensors.",
+                tag: "MACHINES // MASTER",
+                title: "MACHINE MASTER",
+                desc: "Master motor connections, transformer testing, electrical drives, and control machinery challenges.",
                 rulesLink: "../eee/eee.html#events"
             }
         ]
@@ -2484,7 +2555,7 @@ const deptEventsData = {
     mech: {
         code: "07 // MECH ARENA",
         name: "MECHANICAL ENGINEERING",
-        badge: "5 CAD & INDUSTRIAL EVENTS • OCT 2026",
+        badge: "6 CAD & INDUSTRIAL EVENTS • 17 OCT 2026",
         arenaUrl: "../mech/mech.html",
         accentColor: "teal",
         borderClass: "border-teal-500/50",
@@ -2495,35 +2566,42 @@ const deptEventsData = {
                 num: "01",
                 tag: "DESIGN // PRESENTATION",
                 title: "PAPER PRESENTATION",
-                desc: "Present advances in thermodynamics, additive manufacturing, robotics, and aerodynamics.",
+                desc: "Present on Next-Gen Technologies: EVs, AI, Robotics, 3D Printing, Smart Manufacturing & Advanced Materials.",
                 rulesLink: "../mech/mech.html#events"
             },
             {
                 num: "02",
-                tag: "ENGINEERING // EXPERT",
-                title: "MR. MACHINIST",
-                desc: "Hands-on precision machining, lathe operations, tolerance verification, and metal fabrication.",
+                tag: "ENGINEERING // HACKATHON",
+                title: "MECH HACK X",
+                desc: "Problem statements announced at start. Teams develop solutions and build working prototypes within the time.",
                 rulesLink: "../mech/mech.html#events"
             },
             {
                 num: "03",
-                tag: "DRAFTING // ENGINEERING",
-                title: "MASTER DRAFTSMAN",
-                desc: "Demonstrate drafting accuracy, GD&T proficiency, and mechanical drafting challenges.",
+                tag: "PROJECT // EXPO",
+                title: "PROJECT XPLORE",
+                desc: "Original, innovative Mechanical Engineering projects and hybrid working models with live demonstration.",
                 rulesLink: "../mech/mech.html#events"
             },
             {
                 num: "04",
-                tag: "COMMUNICATION // TECH TALK",
-                title: "EXTEMPORE",
-                desc: "Spontaneous oratory on industry 4.0, autonomous vehicles, green hydrogen, and aerospace tech.",
+                tag: "POSTER // PRESENTATION",
+                title: "POSTER PRO",
+                desc: "Individual visual technical poster design on on-the-spot topics completed within the allotted duration.",
                 rulesLink: "../mech/mech.html#events"
             },
             {
                 num: "05",
-                tag: "QUIZ // TECHNICAL CHALLENGE",
-                title: "BRAIN BOLT",
-                desc: "Challenging quiz on mechanics of solids, fluid dynamics, manufacturing science, and kinetics.",
+                tag: "QUIZ // TECHNICAL",
+                title: "QUIZ - BRAIN BOLT",
+                desc: "Fast-paced technical quiz with time limits, rapid-fire questions, and strict rules testing engineering depth.",
+                rulesLink: "../mech/mech.html#events"
+            },
+            {
+                num: "06",
+                tag: "ROCKET // LAUNCH",
+                title: "AQUA ROCKET",
+                desc: "Design and build water-powered rockets with compressed air, judged on height, duration and accuracy.",
                 rulesLink: "../mech/mech.html#events"
             }
         ]
@@ -2531,7 +2609,7 @@ const deptEventsData = {
     sh: {
         code: "08 // S & H ARENA",
         name: "SCIENCE & HUMANITIES",
-        badge: "4 FOUNDATIONAL EVENTS • 10 OCT 2026",
+        badge: "4 FOUNDATIONAL EVENTS • 17 OCT 2026",
         arenaUrl: "../s&h/s&h.html",
         accentColor: "blue",
         borderClass: "border-blue-500/50",
@@ -2542,28 +2620,28 @@ const deptEventsData = {
                 num: "01",
                 tag: "PHYSICS // PRESENTATION",
                 title: "PAPER PRESENTATION (PHYSICS)",
-                desc: "Present original research concepts, modern physics principles, and experimental discoveries in Applied Physics.",
+                desc: "Original research with meaningful review of a Physics-related topic. Abstract submission required before deadline (150-300 words).",
                 rulesLink: "../s&h/s&h.html#events"
             },
             {
                 num: "02",
-                tag: "CHEMISTRY // DISPLAY",
-                title: "POSTER PRESENTATION (CHEMISTRY)",
-                desc: "Design and present creative scientific posters addressing chemical innovations and green energy.",
+                tag: "LOGIC // MATHEMATICS",
+                title: "MATH PUZZLES & LOGIC - QUIZ (MATHS)",
+                desc: "Round 1 (Prelims): Logical Warm-up objective puzzles. Round 2: Visual & Graph puzzles. Round 3: Rapid Fire Round. Strict ban on search engines and phones.",
                 rulesLink: "../s&h/s&h.html#events"
             },
             {
                 num: "03",
-                tag: "ORATORY // ENGLISH",
-                title: "EXTEMPORE SPEECH (ENGLISH)",
-                desc: "Showcase spontaneous English fluency, articulation, thought leadership and persuasive speaking skills.",
+                tag: "CHEMISTRY // DISPLAY",
+                title: "POSTER PRESENTATION (CHEMISTRY)",
+                desc: "Abstract submission required before deadline (250-300 words). Poster size A0 : 84.1*118.9 cm, Orientation: Portrait (Vertical).",
                 rulesLink: "../s&h/s&h.html#events"
             },
             {
                 num: "04",
-                tag: "LOGIC // MATHEMATICS",
-                title: "MATH PUZZLES & LOGIC QUIZ",
-                desc: "Test speed, numerical deduction, quantitative aptitude and logical problem-solving across puzzle rounds.",
+                tag: "ORATORY // ENGLISH",
+                title: "EXTEMPORE SPEECH (ENGLISH)",
+                desc: "Speech with a clear introduction, body and conclusion. Speech to be audible to the audience and precise to the point.",
                 rulesLink: "../s&h/s&h.html#events"
             }
         ]
@@ -2665,7 +2743,7 @@ function openEventsModal(deptKey) {
                             <span class="text-[10px] font-mono-tech ${theme.tag} uppercase tracking-widest px-2 py-0.5 rounded border">${ev.tag}</span>
                         </div>
                         <h4 class="text-sm sm:text-base font-orbitron font-bold text-white group-hover:text-slate-200 transition-colors mt-1.5">${ev.title}</h4>
-                        <p class="text-xs text-slate-400 font-mono-tech line-clamp-2 mt-1 leading-relaxed">${ev.desc}</p>
+                        <p class="text-xs text-slate-100 font-mono-tech line-clamp-2 mt-1 leading-relaxed">${ev.desc}</p>
                     </div>
                 </div>
                 <a href="${ev.rulesLink}" class="shrink-0 self-end sm:self-center px-3.5 py-1.5 rounded-lg ${theme.detailBtn} border text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 shadow-sm">
@@ -2679,14 +2757,58 @@ function openEventsModal(deptKey) {
     modal.classList.remove('opacity-0', 'pointer-events-none');
     modal.classList.add('opacity-100', 'pointer-events-auto', 'modal-active');
     document.body.style.overflow = 'hidden';
+    pushEventsModalHistory();
 }
 
-function closeEventsModal() {
+let isEventsModalHistoryPushed = false;
+
+function isHomeMobileView() {
+    return window.innerWidth <= 900 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+}
+
+function pushEventsModalHistory() {
+    if (isHomeMobileView() && !isEventsModalHistoryPushed) {
+        isEventsModalHistoryPushed = true;
+        try {
+            history.pushState({ eventsModalOpen: true }, "");
+        } catch (e) {}
+    }
+}
+
+function closeEventsModalInternal() {
     const modal = document.getElementById('events-popup-modal');
     if (!modal) return;
     modal.classList.remove('opacity-100', 'pointer-events-auto', 'modal-active');
     modal.classList.add('opacity-0', 'pointer-events-none');
     document.body.style.overflow = '';
+}
+
+function closeEventsModal() {
+    if (isEventsModalHistoryPushed) {
+        isEventsModalHistoryPushed = false;
+        try {
+            history.back();
+        } catch (e) {}
+    }
+    closeEventsModalInternal();
+}
+
+window.addEventListener('popstate', () => {
+    if (isEventsModalHistoryPushed) {
+        isEventsModalHistoryPushed = false;
+        closeEventsModalInternal();
+    } else {
+        const modal = document.getElementById('events-popup-modal');
+        if (modal && modal.classList.contains('opacity-100') && isHomeMobileView()) {
+            closeEventsModalInternal();
+        }
+    }
+});
+
+if (window.history.state && window.history.state.eventsModalOpen) {
+    try {
+        history.replaceState(null, "");
+    } catch (e) {}
 }
 
 function handleModalBackdropClick(event) {
