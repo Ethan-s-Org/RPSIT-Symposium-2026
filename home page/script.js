@@ -2823,3 +2823,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Clear any stored mobile department switcher scroll when returning to home page
+try {
+    sessionStorage.removeItem('deptNavScrollLeft');
+} catch (e) {}
+
+
