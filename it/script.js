@@ -228,14 +228,14 @@ document.querySelectorAll(".event-card").forEach((card,i)=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
         setTimeout(()=>{
-          card.style.transition="opacity .6s ease, transform .6s ease";
+          card.style.transition="opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1)";
           card.style.opacity="1";
           card.style.transform="translateY(0)";
         },i*90);
-        observer.disconnect();
+        observer.unobserve(entry.target);
       }
     });
-  },{threshold:.12});
+  },{threshold:.06, rootMargin: '0px 0px -20px 0px'});
   observer.observe(card);
 });
 
