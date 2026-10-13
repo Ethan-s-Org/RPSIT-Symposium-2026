@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -41,6 +41,18 @@
     <div class="hud-status glass">
       <span class="status-dot"></span>
       <span>SYSTEM ONLINE</span>
+    </div>
+      <div class="dept-nav-controls">
+      <button type="button" class="dept-nav-btn" onclick="scrollDeptSwitcher(-1)" aria-label="Scroll departments left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button type="button" class="dept-nav-btn" onclick="scrollDeptSwitcher(1)" aria-label="Scroll departments right">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -247,7 +259,7 @@
         registering. Once you have confirmed the details, proceed with the registration.
       </div>
 
-      <button class="cyber-btn full" onclick="closeModals()">REGISTER</button>
+      <a class="cyber-btn full" href="https://docs.google.com/forms/d/e/1FAIpQLSfaesC5w4knzPndiZ6S_GEc9NtKhlF8GWHz_WJlNSjaXsF9hA/viewform" target="_blank" rel="noopener noreferrer">REGISTER</a>
     </div>
   </div>
 

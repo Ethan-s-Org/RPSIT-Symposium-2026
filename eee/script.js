@@ -1,4 +1,4 @@
-// ==========================================
+﻿// ==========================================
 // INFINITE TECHFEST' 26
 // EEE DEPARTMENT - SCRIPT.JS
 // ==========================================
@@ -960,3 +960,25 @@ console.log(
     }
   });
 })();
+
+// Department Switcher Navigation Scroll (Mobile Controls)
+function scrollDeptSwitcher(direction) {
+  const switcher = document.querySelector('.dept-switcher');
+  if (switcher) {
+    const scrollAmount = Math.max(160, Math.round(switcher.clientWidth * 0.65));
+    switcher.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// Auto-center active department tab on mobile
+window.addEventListener('DOMContentLoaded', () => {
+  const activeTab = document.querySelector('.dept-switcher a.active');
+  if (activeTab && activeTab.scrollIntoView) {
+    setTimeout(() => {
+      activeTab.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    }, 150);
+  }
+});

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -41,6 +41,18 @@
     <div class="hud-status glass">
       <span class="status-dot"></span>
       <span>SYSTEM ONLINE</span>
+    </div>
+    <div class="dept-nav-controls">
+      <button type="button" class="dept-nav-btn" onclick="scrollDeptSwitcher(-1)" aria-label="Scroll departments left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button type="button" class="dept-nav-btn" onclick="scrollDeptSwitcher(1)" aria-label="Scroll departments right">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -112,7 +124,8 @@
       <div class="section-heading">
         <span>// COMPETITION TRACKS</span>
         <h2>OFFICIAL <strong>EVENTS</strong></h2>
-        <p>Six tactical cyber warfare and defense modules organized by the Department of Computer Science and Engineering (Cyber Security).</p>
+        <p>Six tactical cyber warfare and defense modules organized by the Department of Computer Science and
+          Engineering (Cyber Security).</p>
       </div>
 
       <div class="events-grid">
@@ -120,11 +133,13 @@
         <article class="event-card">
           <div class="event-top"><b>01</b><span>RESEARCH // PRESENTATION</span></div>
           <h3>CYBER PAPER PRESENTATION</h3>
-          <p>Abstract submission required before the deadline (250–300 words). Topics must focus on cybersecurity, ethical hacking, network security, digital forensics, cryptography, or privacy.</p>
+          <p>Abstract submission required before the deadline (250–300 words). Topics must focus on cybersecurity,
+            ethical hacking, network security, digital forensics, cryptography, or privacy.</p>
           <div class="meta"><span>👥 1–4 MEMBERS</span><span>⌖ M212 SMART TV CLASS ROOM</span></div>
           <div class="actions">
             <button class="outline-btn"
-              onclick="openRulesModal('Cyber Paper Presentation',null,'M212 Smart TV Class Room',['Abstract submission required before the deadline (250–300 words).','Presentation time: 8–10 minutes; Q&amp;A: 2–3 minutes.','Topics must focus on cybersecurity, ethical hacking, network security, digital forensics, cryptography, or privacy.','Team size: 1–4 members.'],'Technical depth, originality, relevance, presentation clarity, and answers to questions.','<strong>Staff Coordinator:</strong><br>Dr S.Elavarasan, AP/Mech — <a href=\'tel:9786102348\'>9786102348</a><br><br><strong>Student Coordinators:</strong><br>1. N. Madhumitha, III-CS<br>2. S. Santhosh, II-CS','1–4 members')">VIEW RULES</button>
+              onclick="openRulesModal('Cyber Paper Presentation',null,'M212 Smart TV Class Room',['Abstract submission required before the deadline (250–300 words).','Presentation time: 8–10 minutes; Q&amp;A: 2–3 minutes.','Topics must focus on cybersecurity, ethical hacking, network security, digital forensics, cryptography, or privacy.','Team size: 1–4 members.'],'Technical depth, originality, relevance, presentation clarity, and answers to questions.','<strong>Staff Coordinator:</strong><br>Dr S.Elavarasan, AP/Mech — <a href=\'tel:9786102348\'>9786102348</a><br><br><strong>Student Coordinators:</strong><br>1. N. Madhumitha, III-CS<br>2. S. Santhosh, II-CS','1–4 members')">VIEW
+              RULES</button>
           </div>
         </article>
 
@@ -132,11 +147,13 @@
         <article class="event-card">
           <div class="event-top"><b>02</b><span>INTEL // QUIZ</span></div>
           <h3>CYBER HUNT <i>(TECHNICAL QUIZ)</i></h3>
-          <p>Round 1: 10 questions — 6 questions from CRT and 4 from general/technical knowledge. Teams must qualify to proceed to Round 2.</p>
+          <p>Round 1: 10 questions — 6 questions from CRT and 4 from general/technical knowledge. Teams must qualify to
+            proceed to Round 2.</p>
           <div class="meta"><span>◎ 3 ROUNDS</span><span>⌖ ALPHA LAB</span></div>
           <div class="actions">
             <button class="outline-btn"
-              onclick="openRulesModal('Cyber Hunt (TechnicalQuiz)',null,'Alpha Lab',['Round 1: 10 questions — 6 questions from CRT and 4 from general/technical knowledge. Teams must qualify to proceed to Round 2.','Round 2: 10 questions — 5 questions from CRT and 5 from general/technical knowledge.','Round 3: Rapid Fire Round with 10 questions to be answered within 100 seconds.','Only one member per team is allowed to participate in the Rapid Fire Round.','The team with the highest score in the final round will be declared the winner.'],null,'<strong>Staff Coordinator:</strong><br>Mr.C.Mahavishnu, AP/CS — <a href=\'tel:9629039155\'>9629039155</a><br><br><strong>Student Coordinators:</strong><br>1. C. JANANI AMMA, III-CS<br>2. S. ADHITHYA, II-CS',null)">VIEW RULES</button>
+              onclick="openRulesModal('Cyber Hunt (TechnicalQuiz)',null,'Alpha Lab',['Round 1: 10 questions — 6 questions from CRT and 4 from general/technical knowledge. Teams must qualify to proceed to Round 2.','Round 2: 10 questions — 5 questions from CRT and 5 from general/technical knowledge.','Round 3: Rapid Fire Round with 10 questions to be answered within 100 seconds.','Only one member per team is allowed to participate in the Rapid Fire Round.','The team with the highest score in the final round will be declared the winner.'],null,'<strong>Staff Coordinator:</strong><br>Mr.C.Mahavishu, AP/CSE(CS) — <a href=\'tel:9629039155\'>9629039155</a><br><br><strong>Student Coordinators:</strong><br>1. C. JANANI AMMA, III-CS<br>2. S. ADHITHYA, II-CS',null)">VIEW
+              RULES</button>
           </div>
         </article>
 
@@ -144,11 +161,13 @@
         <article class="event-card">
           <div class="event-top"><b>03</b><span>DEFENSE // DETECTION</span></div>
           <h3>PHISHGUARD: PHISHING WEBSITE DETECTION</h3>
-          <p>The activity consists of 3 levels of phishing identification. Participants will be shown different messages, emails, websites, or screenshots to identify whether it is Phishing or Legitimate.</p>
+          <p>The activity consists of 3 levels of phishing identification. Participants will be shown different
+            messages, emails, websites, or screenshots to identify whether it is Phishing or Legitimate.</p>
           <div class="meta"><span>⚡ 3 LEVELS</span><span>⌖ ALPHA LAB</span></div>
           <div class="actions">
             <button class="outline-btn"
-              onclick="openRulesModal('PhishGuard: Phishing Website Detection',null,'Alpha Lab',['The activity consists of 3 levels of phishing identification.','Only one member per team is allowed to participate.','Participants will be shown different messages, emails, websites, or screenshots.','For each scenario, participants must identify whether it is Phishing or Legitimate.','Participants who identify the required number of scenarios correctly will qualify for the next level.'],null,'<strong>Staff Coordinator:</strong><br>Mr.C.Mahavishnu, AP/CS — <a href=\'tel:9629039155\'>9629039155</a><br><br><strong>Student Coordinators:</strong><br>1. K.SANJAY KRISHNA, III-CS<br>2. S. HARINI, II-CS',null)">VIEW RULES</button>
+              onclick="openRulesModal('PhishGuard: Phishing Website Detection',null,'Alpha Lab',['The activity consists of 3 levels of phishing identification.','Only one member per team is allowed to participate.','Participants will be shown different messages, emails, websites, or screenshots.','For each scenario, participants must identify whether it is Phishing or Legitimate.','Participants who identify the required number of scenarios correctly will qualify for the next level.'],null,'<strong>Staff Coordinator:</strong><br>Mr.C.Mahavishu, AP/CSE(CS) — <a href=\'tel:9629039155\'>9629039155</a><br><br><strong>Student Coordinators:</strong><br>1. K.SANJAY KRISHNA, III-CS<br>2. S. HARINI, II-CS',null)">VIEW
+              RULES</button>
           </div>
         </article>
 
@@ -156,11 +175,13 @@
         <article class="event-card">
           <div class="event-top"><b>04</b><span>TACTICAL // SURVIVAL</span></div>
           <h3>CYBER ESCAPE ROOM: INCIDENT RESPONSE CHALLENGE</h3>
-          <p>Teams solve a sequence of cybersecurity puzzles to unlock the final code. Challenges may include password hygiene, phishing identification, log analysis, and basic cryptography.</p>
+          <p>Teams solve a sequence of cybersecurity puzzles to unlock the final code. Challenges may include password
+            hygiene, phishing identification, log analysis, and basic cryptography.</p>
           <div class="meta"><span>👥 1-2 MEMBERS</span><span>⌖ ALPHA LAB</span></div>
           <div class="actions">
             <button class="outline-btn"
-              onclick="openRulesModal('Cyber Escape Room: Incident Response Challenge',null,'Alpha Lab',['Teams solve a sequence of cybersecurity puzzles to unlock the final code.','Challenges may include password hygiene, phishing identification, log analysis, and basic cryptography.','Teams must work only with the materials and systems provided by organizers.','No external help, unauthorized tools, or tampering with event systems.','Team size: 1-2 members.'],'Correct answers, completion time, teamwork, and adherence to rules.','<strong>Staff Coordinator:</strong><br>Mrs.P.Sathya, AP/CS — <a href=\'tel:7806829541\'>7806829541</a><br><br><strong>Student Coordinators:</strong><br>1. M. PREMIKA, III CS<br>2. V. RAGHUL, II CS','1-2 members')">VIEW RULES</button>
+              onclick="openRulesModal('Cyber Escape Room: Incident Response Challenge',null,'Alpha Lab',['Teams solve a sequence of cybersecurity puzzles to unlock the final code.','Challenges may include password hygiene, phishing identification, log analysis, and basic cryptography.','Teams must work only with the materials and systems provided by organizers.','No external help, unauthorized tools, or tampering with event systems.','Team size: 1-2 members.'],'Correct answers, completion time, teamwork, and adherence to rules.','<strong>Staff Coordinator:</strong><br>Mr.C.Mahavishu, AP/CSE(CS) — <a href=\'tel:9629039155\'>9629039155</a><br><br><strong>Student Coordinators:</strong><br>1. M. PREMIKA, III CS<br>2. V. RAGHUL, II CS','1-2 members')">VIEW
+              RULES</button>
           </div>
         </article>
 
@@ -168,11 +189,13 @@
         <article class="event-card">
           <div class="event-top"><b>05</b><span>KEYNOTE // INNOVATION</span></div>
           <h3>CYBERSECURITY SPOTLIGHT: TECH TALKS</h3>
-          <p>Select a current cybersecurity topic such as AI security, cloud security, digital forensics, or privacy. Talk duration: 5–7 minutes, followed by 2–3 minutes of Q&amp;A.</p>
+          <p>Select a current cybersecurity topic such as AI security, cloud security, digital forensics, or privacy.
+            Talk duration: 5–7 minutes, followed by 2–3 minutes of Q&amp;A.</p>
           <div class="meta"><span>👥 UP TO 2 MEMBERS</span><span>⌖ M212 SMART TV CLASS ROOM</span></div>
           <div class="actions">
             <button class="outline-btn"
-              onclick="openRulesModal('Cybersecurity Spotlight: Tech Talks',null,'M212 Smart TV Class Room',['Select a current cybersecurity topic such as AI security, cloud security, digital forensics, or privacy.','Talk duration: 5–7 minutes, followed by 2–3 minutes of Q&amp;A.','Use clear explanations and cite sources for statistics, images, and claims.','Avoid sharing confidential information or instructions intended to harm systems.','Individual or team of up to 2 members.'],'Accuracy, clarity, relevance, engagement, and Q&amp;A.','<strong>Staff Coordinator:</strong><br>Mrs.P.Sathya, AP/CS — <a href=\'tel:7806829541\'>7806829541</a><br><br><strong>Student Coordinators:</strong><br>1. P. SALMA AFREEN, III CS<br>2. M. GAYATHRI, II CS','Individual or team of up to 2 members')">VIEW RULES</button>
+              onclick="openRulesModal('Cybersecurity Spotlight: Tech Talks',null,'M212 Smart TV Class Room',['Select a current cybersecurity topic such as AI security, cloud security, digital forensics, or privacy.','Talk duration: 5–7 minutes, followed by 2–3 minutes of Q&amp;A.','Use clear explanations and cite sources for statistics, images, and claims.','Avoid sharing confidential information or instructions intended to harm systems.','Individual or team of up to 2 members.'],'Accuracy, clarity, relevance, engagement, and Q&amp;A.','<strong>Staff Coordinator:</strong><br>Mr.C.Mahavishu, AP/CSE(CS) — <a href=\'tel:9629039155\'>9629039155</a><br><br><strong>Student Coordinators:</strong><br>1. P. SALMA AFREEN, III CS<br>2. M. GAYATHRI, II CS','Individual or team of up to 2 members')">VIEW
+              RULES</button>
           </div>
         </article>
 
@@ -180,11 +203,13 @@
         <article class="event-card">
           <div class="event-top"><b>06</b><span>SECURITY // HACKATHON</span></div>
           <h3>CYBERSECURE HACKATHON</h3>
-          <p>Cybersecurity problem statements will be announced in advance or at the event start. Teams must build their solution during the event; pre-existing complete projects are not permitted.</p>
+          <p>Cybersecurity problem statements will be announced in advance or at the event start. Teams must build their
+            solution during the event; pre-existing complete projects are not permitted.</p>
           <div class="meta"><span>👥 2–4 MEMBERS</span><span>⌖ ALPHA LAB</span></div>
           <div class="actions">
             <button class="outline-btn"
-              onclick="openRulesModal('CyberSecure Hackathon',null,'Alpha Lab',['Cybersecurity problem statements will be announced in advance or at the event start.','Teams must build their solution during the event; pre-existing complete projects are not permitted.','Participants must bring their own laptops and required development tools.','Work only on authorized systems and test data; no attacks on public or third-party systems.','Team size: 2–4 members.'],'Working prototype, innovation, code quality, relevance, security, and live demonstration.','<strong>Staff Coordinator:</strong><br>Dr S.Elavarasan, AP/Mech — <a href=\'tel:9786102348\'>9786102348</a><br><br><strong>Student Coordinators:</strong><br>1. S. YASIR ARAFATH, III CS<br>2. S.SANTHOSH, II CS','2–4 members')">VIEW RULES</button>
+              onclick="openRulesModal('CyberSecure Hackathon',null,'Alpha Lab',['Cybersecurity problem statements will be announced in advance or at the event start.','Teams must build their solution during the event; pre-existing complete projects are not permitted.','Participants must bring their own laptops and required development tools.','Work only on authorized systems and test data; no attacks on public or third-party systems.','Team size: 2–4 members.'],'Working prototype, innovation, code quality, relevance, security, and live demonstration.','<strong>Staff Coordinator:</strong><br>Dr S.Elavarasan, AP/Mech — <a href=\'tel:9786102348\'>9786102348</a><br><br><strong>Student Coordinators:</strong><br>1. S. YASIR ARAFATH, III CS<br>2. S.SANTHOSH, II CS','2–4 members')">VIEW
+              RULES</button>
           </div>
         </article>
       </div>
@@ -202,11 +227,11 @@
         <!-- STAFF COORDINATOR -->
         <div class="coord-card glass">
           <span>STAFF CO-ORDINATOR</span>
-          <h3>Mrs. P. Sathya</h3>
-          <p>AP / CS — Dept of Cyber Security</p>
+          <h3>Mr. C. Mahavishnu</h3>
+          <p>AP / CSE(CS) — Dept of Cyber Security</p>
           <div>
-            <a href="tel:7806829541" class="coord-btn phone-btn">☎ 78068 29541</a>
-            <a href="https://wa.me/917806829541" target="_blank" class="coord-btn wa-btn">◉ WHATSAPP</a>
+            <a href="tel:9629039155" class="coord-btn phone-btn">☎ 96290 39155</a>
+            <a href="https://wa.me/919629039155" target="_blank" class="coord-btn wa-btn">◉ WHATSAPP</a>
           </div>
         </div>
 
@@ -214,7 +239,7 @@
         <div class="coord-card glass">
           <span>STUDENT CO-ORDINATOR</span>
           <h3>Ms. R. Kavisri</h3>
-          <p>III / CS</p>
+          <p>III / CSE(CS)</p>
           <div>
             <a href="tel:6374794582" class="coord-btn phone-btn">☎ 63747 94582</a>
             <a href="https://wa.me/916374794582" target="_blank" class="coord-btn wa-btn">◉ WHATSAPP</a>
@@ -232,14 +257,18 @@
       <div class="modal-info dept-reg-info">
         <p class="reg-fee-item">A common registration fee of ₹100 must be paid online through the website.</p>
         <p class="reg-fee-item">Participants can register for any number of events.</p>
-        <p class="reg-fee-item">An additional ₹50 per event can be paid on the spot at the college during event registration.</p>
+        <p class="reg-fee-item">An additional ₹50 per event can be paid on the spot at the college during event
+          registration.</p>
       </div>
 
       <div class="dept-reg-note">
-        <strong>Note:</strong> Please make sure you have checked the event details and rules carefully before registering. Once you have confirmed the details, proceed with the registration.
+        <strong>Note:</strong> Please make sure you have checked the event details and rules carefully before
+        registering. Once you have confirmed the details, proceed with the registration.
       </div>
 
-      <a class="cyber-btn full" href="https://docs.google.com/forms/d/e/1FAIpQLSdA1Dy3DEzaGZ4nyGSwW-aWq0Nrj57D0wbUvb0HEN7j0kUf4A/viewform" target="_blank" rel="noopener noreferrer">REGISTER</a>
+      <a class="cyber-btn full"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdA1Dy3DEzaGZ4nyGSwW-aWq0Nrj57D0wbUvb0HEN7j0kUf4A/viewform"
+        target="_blank" rel="noopener noreferrer">REGISTER</a>
     </div>
   </div>
 

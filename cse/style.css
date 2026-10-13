@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box
 }
 
@@ -1392,5 +1392,78 @@ main {
     top: 8px;
     right: 10px;
     font-size: 24px;
+  }
+}
+
+/* Department Switcher Navigation Controls (Mobile Only) */
+.dept-nav-controls {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hud-status {
+    display: none !important;
+  }
+  .dept-nav-controls {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+    z-index: 55;
+  }
+  .dept-nav-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(10, 25, 41, 0.85);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    color: #c4e5f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.55), inset 0 0 10px rgba(0, 243, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .dept-nav-btn:hover {
+    background: rgba(0, 243, 255, 0.12);
+    border-color: #00f3ff;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.45);
+    transform: translateY(-1px);
+  }
+  .dept-nav-btn:active {
+    transform: scale(0.92);
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+  }
+  .dept-nav-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    fill: none;
+    transition: stroke 0.2s ease;
+  }
+  .dept-switcher {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .dept-nav-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+  }
+  .dept-nav-btn svg {
+    width: 16px;
+    height: 16px;
   }
 }
