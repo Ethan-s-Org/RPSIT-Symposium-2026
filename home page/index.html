@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -663,11 +663,11 @@
                         <div class="mt-3 px-1.5 flex flex-col justify-start">
                             <span
                                 class="text-[10px] sm:text-[11px] font-mono-tech text-amber-400 uppercase tracking-widest">
-                                ADVENTURE // 17 OCT
+                                HUMAN ROBOT // 17 OCT
                             </span>
                             <h3
                                 class="text-sm sm:text-base font-orbitron font-extrabold text-white group-hover:text-amber-300 transition-colors mt-0.5 tracking-wide truncate">
-                                MAZE RUNNER
+                                MAZE - HUMAN ROBOT
                             </h3>
                             <!-- Mobile-only button under poster near MAZE RUNNER -->
                             <button type="button" onclick="openNonTechModal('maze-runner')"
@@ -1751,30 +1751,167 @@
 
             <!-- Modal Body (2 Columns on Desktop) -->
             <div class="overflow-y-auto space-y-4 pr-1 sm:pr-2 flex-1 custom-modal-scroll relative z-10">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 items-stretch">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 items-start">
                     <!-- Left Column: Event Poster -->
-                    <div class="md:col-span-5 flex justify-center items-center">
+                    <div class="md:col-span-5 flex justify-center items-start md:sticky md:top-0">
                         <div
                             class="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-none rounded-xl sm:rounded-2xl overflow-hidden border border-orange-500/30 shadow-[0_0_30px_rgba(0,0,0,0.8)] aspect-[1/1.44] bg-slate-950">
                             <img id="nontech-modal-poster" src="" alt="Event Poster" class="w-full h-full object-cover">
                         </div>
                     </div>
 
-                    <!-- Right Column: Empty Content Area Reserved for Future Rules -->
-                    <div class="md:col-span-7 flex flex-col justify-center min-h-[260px] sm:min-h-[340px]">
-                        <div id="nontech-modal-content-area"
-                            class="w-full h-full flex-1 flex flex-col items-center justify-center p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-dashed border-amber-500/30 text-center">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-3.5 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div
-                                class="text-xs sm:text-sm font-orbitron font-bold text-slate-200 tracking-wider uppercase text-center leading-relaxed">
-                                RULES &amp; GUIDELINES<br class="sm:hidden"> WILL BE UPDATED SOON
+                    <!-- Right Column: Content Area for Rules & Guidelines -->
+                    <div class="md:col-span-7 flex flex-col justify-start min-h-[260px] sm:min-h-[340px]">
+                        <div id="nontech-modal-content-area" class="w-full flex-1 flex flex-col">
+                            <div class="w-full space-y-3.5">
+                                <!-- Event Key Specs -->
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 pb-1">
+                                    <div
+                                        class="p-2 sm:p-2.5 rounded-xl bg-slate-900/80 border border-orange-500/25 flex flex-col">
+                                        <span class="text-[10px] font-mono-tech text-amber-400 tracking-wider">TEAM
+                                            SIZE</span>
+                                        <span class="text-xs sm:text-sm font-orbitron font-bold text-white mt-0.5">2
+                                            MEMBERS</span>
+                                    </div>
+                                    <div
+                                        class="p-2 sm:p-2.5 rounded-xl bg-slate-900/80 border border-orange-500/25 flex flex-col">
+                                        <span class="text-[10px] font-mono-tech text-amber-400 tracking-wider">LAPS
+                                            &amp; PITS</span>
+                                        <span class="text-xs sm:text-sm font-orbitron font-bold text-white mt-0.5">5
+                                            LAPS + 1 PIT</span>
+                                    </div>
+                                    <div
+                                        class="col-span-2 sm:col-span-1 p-2 sm:p-2.5 rounded-xl bg-slate-900/80 border border-orange-500/25 flex flex-col">
+                                        <span class="text-[10px] font-mono-tech text-amber-400 tracking-wider">TRACK
+                                            TYPE</span>
+                                        <span
+                                            class="text-xs sm:text-sm font-orbitron font-bold text-white mt-0.5 truncate">MUD
+                                            &amp; OBSTACLES</span>
+                                    </div>
+                                </div>
+
+                                <!-- Rules Heading -->
+                                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+                                        <span
+                                            class="text-[11px] font-mono-tech text-orange-400 tracking-widest font-semibold uppercase">
+                                            // OFFICIAL RACE RULES &amp; GUIDELINES
+                                        </span>
+                                    </div>
+                                    <span class="text-[10px] font-mono-tech text-slate-400">10 RULES</span>
+                                </div>
+
+                                <!-- Rules List -->
+                                <div class="space-y-2.5">
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">01</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            Each team must consist of <strong class="text-amber-300 font-semibold">two
+                                                members</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">02</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            Each participant must bring their own <strong
+                                                class="text-amber-300 font-semibold">RC car</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">03</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            The RC car must have <strong class="text-amber-300 font-semibold">two fully
+                                                charged batteries</strong> and be race-ready before reporting to the
+                                            track.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">04</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            The track will include <strong class="text-amber-300 font-semibold">mud,
+                                                rough terrain, and various obstacles</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">05</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            Participants must complete <strong class="text-amber-300 font-semibold">five
+                                                specified laps</strong>, including <strong
+                                                class="text-amber-300 font-semibold">one pit stop</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">06</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            Skipping or bypassing any obstacle or section of the track is <strong
+                                                class="text-rose-400 font-semibold">strictly prohibited</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">07</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            Participants must follow the specified <strong
+                                                class="text-amber-300 font-semibold">track direction and
+                                                sequence</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">08</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            The participant or team with the <strong
+                                                class="text-amber-300 font-semibold">shortest valid completion
+                                                time</strong> will be ranked higher.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">09</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            The race will begin only after the official <strong
+                                                class="text-emerald-400 font-semibold">Start signal</strong>.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span
+                                            class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">10</span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            The decisions of the event officials will be <strong
+                                                class="text-amber-300 font-semibold">final and binding</strong>.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Official Directive Callout -->
+                                <div
+                                    class="p-3 rounded-xl bg-orange-950/25 border border-orange-500/30 flex items-start gap-2.5 text-xs text-orange-200/90 font-mono-tech">
+                                    <span class="text-amber-400 text-sm mt-0.5">⚠️</span>
+                                    <div>
+                                        <span
+                                            class="text-amber-400 font-bold block uppercase text-[10px] tracking-wider mb-0.5">//
+                                            OFFICIAL DIRECTIVE</span>
+                                        All racers must report to the track marshal 15 minutes before the heat with
+                                        race-ready RC cars. Ensure batteries are pre-charged.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1809,13 +1946,52 @@
                 title: 'RC RAMPAGE',
                 tag: 'FLAGSHIP ARENA // NON-TECHNICAL',
                 venue: 'VENUE: RPSIT CAMPUS',
-                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.48 AM (2).jpeg'
+                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.48 AM (2).jpeg',
+                highlights: [
+                    { label: 'TEAM SIZE', val: '2 MEMBERS' },
+                    { label: 'LAPS & PITS', val: '5 LAPS + 1 PIT' },
+                    { label: 'TRACK TYPE', val: 'MUD & OBSTACLES' }
+                ],
+                rules: [
+                    'Each team must consist of <strong class="text-amber-300 font-semibold">two members</strong>.',
+                    'Each participant must bring their own <strong class="text-amber-300 font-semibold">RC car</strong>.',
+                    'The RC car must have <strong class="text-amber-300 font-semibold">two fully charged batteries</strong> and be race-ready before reporting to the track.',
+                    'The track will include <strong class="text-amber-300 font-semibold">mud, rough terrain, and various obstacles</strong>.',
+                    'Participants must complete <strong class="text-amber-300 font-semibold">five specified laps</strong>, including <strong class="text-amber-300 font-semibold">one pit stop</strong>.',
+                    'Skipping or bypassing any obstacle or section of the track is <strong class="text-rose-400 font-semibold">strictly prohibited</strong>.',
+                    'Participants must follow the specified <strong class="text-amber-300 font-semibold">track direction and sequence</strong>.',
+                    'The participant or team with the <strong class="text-amber-300 font-semibold">shortest valid completion time</strong> will be ranked higher.',
+                    'The race will begin only after the official <strong class="text-emerald-400 font-semibold">Start signal</strong>.',
+                    'The decisions of the event officials will be <strong class="text-amber-300 font-semibold">final and binding</strong>.'
+                ],
+                advisory: 'All racers must report to the track marshal 15 minutes before the heat with race-ready RC cars. Ensure batteries are pre-charged.'
             },
             'treasure-hunt': {
                 title: 'TREASURE HUNT',
                 tag: 'ODYSSEY ARENA // NON-TECHNICAL',
                 venue: 'VENUE: RPSIT CAMPUS',
-                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.49 AM.jpeg'
+                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.49 AM.jpeg',
+                rulesHeading: '// OFFICIAL TREASURE HUNT RULES',
+                description: 'Embark on an epic campus-wide quest! Teams will decipher cryptic clues, navigate challenge checkpoints, and race against the clock to discover the final hidden treasure.',
+                highlights: [
+                    { label: 'TEAM SIZE', val: '2 - 4 MEMBERS' },
+                    { label: 'FORMAT', val: 'CAMPUS CLUE HUNT' },
+                    { label: 'WIN CRITERIA', val: 'SCORE / FASTEST TIME' }
+                ],
+                rules: [
+                    'Each team must consist of <strong class="text-amber-300 font-semibold">2-4 participants</strong>.',
+                    'Every team will receive its <strong class="text-amber-300 font-semibold">first clue</strong> from the event organizers.',
+                    'Each clue leads to the <strong class="text-amber-300 font-semibold">next location or challenge</strong>.',
+                    'Teams must solve clues in the <strong class="text-amber-300 font-semibold">correct order</strong>.',
+                    'Participants must <strong class="text-rose-400 font-semibold">not damage college property</strong> or disturb ongoing events.',
+                    'Mobile phones and internet searches are <strong class="text-rose-400 font-semibold">not allowed</strong>.',
+                    'Teams must <strong class="text-rose-400 font-semibold">not take clues</strong> belonging to other teams.',
+                    'Participants must not run in <strong class="text-amber-300 font-semibold">restricted areas</strong> or enter unauthorized locations.',
+                    'Teams must follow the instructions of the <strong class="text-amber-300 font-semibold">coordinators and volunteers</strong>.',
+                    'Hints may be requested, but <strong class="text-amber-300 font-semibold">penalty points or time penalties</strong> may apply.',
+                    'The team that reaches the final treasure with the <strong class="text-emerald-400 font-semibold">highest score</strong> or completes the hunt in the <strong class="text-emerald-400 font-semibold">shortest valid time</strong> wins, according to the scoring method announced before the event.'
+                ],
+                advisory: 'Participants must strictly respect campus boundaries. Damaging college property or taking another team\'s clues will lead to immediate disqualification.'
             },
             'game-arena': {
                 title: 'GAME ARENA',
@@ -1827,7 +2003,27 @@
                 title: 'EAGLE EYE CHALLENGE',
                 tag: 'BRAIN ARENA // NON-TECHNICAL',
                 venue: 'VENUE: RPSIT CAMPUS',
-                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.48 AM.jpeg'
+                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.48 AM.jpeg',
+                rulesHeading: '// OFFICIAL CHALLENGE GUIDELINES',
+                description: 'Participants must use their observation skills, quick thinking, and teamwork to identify objects through indirect clues and complete fun challenges.',
+                highlights: [
+                    { label: 'EVENT TYPE', val: 'TEAM (2 PER TEAM)' },
+                    { label: 'FORMAT', val: '1 ROUND • 10 TASKS' },
+                    { label: 'WIN CRITERIA', val: '7/10 TO WIN GIFT' }
+                ],
+                rules: [
+                    'The event consists of a <strong class="text-amber-300 font-semibold">single round</strong> combining picture guessing and object identification challenges.',
+                    'One participant draws a picture, and their teammate must <strong class="text-amber-300 font-semibold">guess what it represents</strong>.',
+                    'Participants must identify objects using <strong class="text-amber-300 font-semibold">indirect clues</strong> provided by the coordinators.',
+                    'Participants must quickly identify the correct object, grab it, and place it inside the <strong class="text-amber-300 font-semibold">designated ring</strong>.',
+                    'A total of <strong class="text-amber-300 font-semibold">10 questions</strong> will be asked during the round.',
+                    'Participants must complete each task within the <strong class="text-amber-300 font-semibold">allotted time</strong>.',
+                    'Mobile phones and external assistance are <strong class="text-rose-400 font-semibold">not allowed</strong>.',
+                    'Points will be awarded for <strong class="text-amber-300 font-semibold">correct answers, speed</strong>, and successful task completion.',
+                    'Teams answering at least <strong class="text-emerald-400 font-semibold">7 out of 10 questions</strong> correctly will <strong class="text-emerald-400 font-semibold">win a gift</strong>.',
+                    'The decision of the event coordinators will be <strong class="text-amber-300 font-semibold">final</strong>.'
+                ],
+                advisory: 'Strictly no mobile phones or external assistance permitted. The decision of the event coordinators will be final.'
             },
             'word-trap': {
                 title: 'WORD TRAP',
@@ -1836,10 +2032,35 @@
                 poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.49 AM (1).jpeg'
             },
             'maze-runner': {
-                title: 'MAZE RUNNER',
+                title: 'MAZE - HUMAN ROBOT',
                 tag: 'TACTICAL ARENA // NON-TECHNICAL',
                 venue: 'VENUE: AUDITORIUM',
-                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.49 AM (2).jpeg'
+                poster: '../non technical event poster/WhatsApp Image 2026-10-13 at 9.15.49 AM (2).jpeg',
+                rulesHeading: '// OFFICIAL CHALLENGE GUIDELINES',
+                description: 'A tactical test of communication and coordination! One participant acts as the "Human Robot" while teammates guide them through the arena course using precise verbal commands.',
+                highlights: [
+                    { label: 'TEAM SIZE', val: '2 - 3 MEMBERS' },
+                    { label: 'TIME LIMIT', val: '5 - 10 MINS' },
+                    { label: 'ROLES', val: 'ROBOT + COMMANDERS' }
+                ],
+                tasks: [
+                    'Obstacle Avoidance',
+                    'Pick and Place',
+                    'Follow the Path',
+                    'Collect the Objects',
+                    'Delivery Challenge'
+                ],
+                rules: [
+                    'Each team can have <strong class="text-amber-300 font-semibold">2–3 members</strong>.',
+                    'Participants must follow the <strong class="text-amber-300 font-semibold">instructions given by the organizers</strong>.',
+                    'One participant will act as the <strong class="text-amber-300 font-semibold">robot</strong>, and the others will <strong class="text-amber-300 font-semibold">give commands</strong>.',
+                    'The robot must complete the given tasks using the <strong class="text-amber-300 font-semibold">commands</strong>.',
+                    'The time limit will be <strong class="text-amber-300 font-semibold">5–10 minutes</strong>.',
+                    'No physical force or <strong class="text-rose-400 font-semibold">unsafe actions</strong> are allowed.',
+                    'The team that completes the task accurately in the <strong class="text-emerald-400 font-semibold">shortest time</strong> will be the winner.',
+                    'Judges\' decisions will be <strong class="text-amber-300 font-semibold">final</strong>.'
+                ],
+                advisory: 'Safety first: No physical force or unsafe actions are allowed at any time. Judges\' decisions will be final.'
             }
         };
 
@@ -1852,6 +2073,7 @@
             const tagEl = document.getElementById('nontech-modal-tag');
             const venueEl = document.getElementById('nontech-modal-venue');
             const posterEl = document.getElementById('nontech-modal-poster');
+            const contentArea = document.getElementById('nontech-modal-content-area');
 
             if (titleEl) titleEl.textContent = data.title;
             if (tagEl) tagEl.textContent = data.tag;
@@ -1863,6 +2085,99 @@
                     this.onerror = null;
                     this.src = data.poster.replace('non technical event poster', 'non tech events poster');
                 };
+            }
+
+            if (contentArea) {
+                if (data.rules && data.rules.length > 0) {
+                    contentArea.className = "w-full flex-1 flex flex-col";
+                    const highlightsHtml = data.highlights && data.highlights.length > 0 ? `
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 pb-1">
+                            ${data.highlights.map((h, i) => `
+                                <div class="${i === 2 ? 'col-span-2 sm:col-span-1 ' : ''}p-2 sm:p-2.5 rounded-xl bg-slate-900/80 border border-orange-500/25 flex flex-col">
+                                    <span class="text-[10px] font-mono-tech text-amber-400 tracking-wider">${h.label}</span>
+                                    <span class="text-xs sm:text-sm font-orbitron font-bold text-white mt-0.5 truncate">${h.val}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : '';
+
+                    const descriptionHtml = data.description ? `
+                        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/60 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                            <span class="text-amber-400 font-mono-tech font-bold text-[10px] block uppercase tracking-wider mb-1">// MISSION BRIEFING</span>
+                            ${data.description}
+                        </div>
+                    ` : '';
+
+                    const tasksHtml = data.tasks && data.tasks.length > 0 ? `
+                        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/60">
+                            <span class="text-amber-400 font-mono-tech font-bold text-[10px] block uppercase tracking-wider mb-2">// CHALLENGE ARENA TASKS</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                ${data.tasks.map(t => `
+                                    <div class="px-2.5 py-1.5 rounded-lg bg-slate-950/80 border border-slate-700/80 text-[11px] font-mono-tech text-slate-200 flex items-center gap-1.5 shadow-sm">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                                        <span class="truncate">${t}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : '';
+
+                    const advisoryHtml = data.advisory ? `
+                        <div class="p-3 rounded-xl bg-orange-950/25 border border-orange-500/30 flex items-start gap-2.5 text-xs text-orange-200/90 font-mono-tech">
+                            <span class="text-amber-400 text-sm mt-0.5">⚠️</span>
+                            <div>
+                                <span class="text-amber-400 font-bold block uppercase text-[10px] tracking-wider mb-0.5">// OFFICIAL DIRECTIVE</span>
+                                ${data.advisory}
+                            </div>
+                        </div>
+                    ` : '';
+
+                    const headingText = data.rulesHeading || '// OFFICIAL RULES &amp; GUIDELINES';
+
+                    contentArea.innerHTML = `
+                        <div class="w-full space-y-3.5">
+                            ${highlightsHtml}
+                            ${descriptionHtml}
+                            ${tasksHtml}
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+                                    <span class="text-[11px] font-mono-tech text-orange-400 tracking-widest font-semibold uppercase">
+                                        ${headingText}
+                                    </span>
+                                </div>
+                                <span class="text-[10px] font-mono-tech text-slate-400">${data.rules.length} RULES</span>
+                            </div>
+                            <div class="space-y-2.5">
+                                ${data.rules.map((rule, idx) => `
+                                    <div class="p-2.5 sm:p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-orange-500/40 hover:bg-slate-900/90 transition-all flex items-start gap-3 group">
+                                        <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 text-amber-400 font-orbitron font-bold text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                                            ${String(idx + 1).padStart(2, '0')}
+                                        </span>
+                                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+                                            ${rule}
+                                        </p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ${advisoryHtml}
+                        </div>
+                    `;
+                } else {
+                    contentArea.className = "w-full h-full min-h-[260px] sm:min-h-[340px] flex-1 flex flex-col items-center justify-center p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-dashed border-amber-500/30 text-center";
+                    contentArea.innerHTML = `
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-3.5 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="text-xs sm:text-sm font-orbitron font-bold text-slate-200 tracking-wider uppercase text-center leading-relaxed">
+                            RULES &amp; GUIDELINES<br class="sm:hidden"> WILL BE UPDATED SOON
+                        </div>
+                    `;
+                }
             }
 
             if (modal) {
